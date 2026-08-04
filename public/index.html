@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tiger für die Gastronomie – und Ihre neue Website gratis dazu | Swiss Prime Taste AG</title>
+<meta name="description" content="Black Tiger Crevetten für Restaurants, Hotels und Gastrobetriebe – True Count, Bio-Sortiment, direkt vom Schweizer Importeur. Wer bei uns kauft, bekommt seine neue Website geschenkt. Swiss Prime Taste AG, Aadorf.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.spoti.ch/">
+<meta property="og:title" content="Black Tiger für die Gastronomie – Website gratis dazu">
+<meta property="og:description" content="Crevetten direkt vom Importeur. Wer kauft, bekommt seine neue Website geschenkt.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.spoti.ch/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="kopf">
+  <div class="kopf__inner">
+    <a class="kopf__marke" href="#top">
+      <img src="assets/img/marke.svg" alt="" width="30" height="30">
+      <span>SWISS PRIME TASTE</span>
+    </a>
+    <nav class="kopf__nav">
+      <a href="#angebot">Angebot</a>
+      <a href="#sortiment">Sortiment</a>
+      <a href="#beispiel">Beispiel-Website</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="kopf__tel" data-kontakt="telefon" href="tel:+41523680058">+41 52 368 00 58</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <span class="label label--hell" id="aktion-gueltig">Gastro-Aktion 2026</span>
+    <h1>Sie kaufen Crevetten.<br>Wir bauen Ihnen die <em>Website</em>.</h1>
+    <p class="hero__lead">
+      Black Tiger direkt vom Schweizer Importeur – True Count, 100&nbsp;% naturbelassen,
+      ohne Antibiotika, rückverfolgbar bis zum Muttertier. Wer bei uns einsteigt, bekommt seinen neuen
+      Webauftritt gratis dazu. Der Aufbau kostet Sie nichts – kein Abo, keine versteckten Kosten.
+    </p>
+    <div class="btn-reihe">
+      <a class="btn btn--primaer" href="#sortiment">Sortiment &amp; Preise</a>
+      <a class="btn btn--geist" href="demo/">Beispiel-Website ansehen</a>
+    </div>
+    <p class="hero__fuss">
+      Swiss Prime Taste AG · Aadorf TG · Produzent und Direkt-Importeur seit über 20&nbsp;Jahren
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================== ABLAUF -->
+<section class="sek" id="angebot">
+  <div class="wrap">
+    <div class="sek__kopf sek__kopf--mitte">
+      <span class="label">So läuft es ab</span>
+      <h2>Drei Schritte, keine Überraschungen</h2>
+      <p>Sie bestellen Ware, die Sie ohnehin brauchen. Die Website kommt obendrauf.</p>
+    </div>
+
+    <div class="schritte">
+      <article class="schritt">
+        <span class="schritt__nr">1</span>
+        <h3>Muster kommen zu Ihnen</h3>
+        <p>Wir schicken Ihnen ein Muster in die Küche. Sie kochen damit, Ihr Team probiert,
+           Sie entscheiden. Erst danach reden wir über Mengen.</p>
+      </article>
+      <article class="schritt">
+        <span class="schritt__nr">2</span>
+        <h3>Sie steigen ein</h3>
+        <p>Ab 20 kg Jahresabnahme sind Sie dabei. Lieferung tiefgekühlt,
+           in Gastro-Gebinden, planbar über das ganze Jahr.</p>
+      </article>
+      <article class="schritt">
+        <span class="schritt__nr">3</span>
+        <h3>Ihre Website entsteht</h3>
+        <p>Sie geben uns Fotos, Speisekarte und Öffnungszeiten – wir bauen daraus
+           Ihren Auftritt, so wie das Beispiel weiter unten. Sie zahlen nichts dafür.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== SORTIMENT -->
+<section class="sek sek--creme" id="sortiment">
+  <div class="wrap">
+    <div class="sek__kopf">
+      <span class="label">Das Sortiment</span>
+      <h2>Black Tiger in Gastro-Gebinden – Standard und Bio</h2>
+      <p>Penaeus monodon aus Naturteichen in den Mangroven Vietnams. Nur 10–12 Tiere pro
+         Kubikmeter, keine Zufütterung, gefischt in zwei Mondnächten pro Monat und sofort
+         auf Eis gelegt.</p>
+    </div>
+
+    <div class="preis-warnung" id="preis-warnung" hidden></div>
+
+    <div class="karten" id="produkt-karten"></div>
+
+    <h3 style="margin:56px 0 20px;font-size:1.35rem">Das ganze Sortiment</h3>
+
+    <div class="liste-huelle">
+      <table class="liste" id="preisliste"></table>
+    </div>
+
+    <div class="restposten" id="restposten" hidden></div>
+
+    <div id="erklaerungen" style="margin-top:52px">
+      <span class="label">Zwei Begriffe, die auf der Rechnung zählen</span>
+      <div class="erklaerungen" id="erklaerungen-inhalt"></div>
+    </div>
+
+    <p class="klein" style="margin-top:28px;color:var(--text-hell)">
+      <span data-kondition="glasur">Alle Artikel roh, einzeln gefrostet (IQF), mit 20 % Glasur.</span>
+      Preise exkl. MwSt., ab Lager Aadorf. Weitere Kaliber und Aufmachungen auf Anfrage –
+      unser Sortiment umfasst zusätzlich Vannamei, Fisch, Muscheln und Value-Added-Produkte.
+      Bestellungen an <a data-kontakt="bestellung" href="mailto:order@swissprimetaste.ch">order@swissprimetaste.ch</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ QUALITÄT -->
+<section class="sek sek--dunkel">
+  <div class="wrap">
+    <div class="sek__kopf">
+      <span class="label label--hell">Warum diese Crevetten</span>
+      <h2>Was drin ist – und vor allem, was nicht</h2>
+      <p>Wir sind Produzent und Importeur in einem. Das heisst: eigene Qualitätskontrolle
+         entlang der ganzen Linie, vom Teich bis in Ihre Küche. Und jeder Artikel im
+         Sortiment ist True Count – die Stückzahl gilt auf das Nettogewicht.</p>
+    </div>
+    <ul class="merkmale" id="merkmale"></ul>
+  </div>
+</section>
+
+<!-- ================================================================ DEAL -->
+<section class="sek">
+  <div class="wrap">
+    <div class="deal">
+      <div>
+        <span class="label" style="color:rgba(255,255,255,.75)">Der Deal</span>
+        <h2>Ihre neue Website. Auf unsere Kosten.</h2>
+        <p id="deal-text">Ab 20 kg Jahresabnahme bauen wir Ihnen Ihre neue Website – kostenlos.</p>
+      </div>
+      <ul class="deal__liste">
+        <li>Design, Aufbau und Texte</li>
+        <li>Speisekarte, Fotos, Öffnungszeiten</li>
+        <li>Auf Handy, Tablet und Desktop</li>
+        <li>Google-Eintrag und Kartenansicht</li>
+        <li>Hosting im ersten Jahr inklusive</li>
+        <li>Domain und Website gehören Ihnen</li>
+      </ul>
+    </div>
+
+    <div class="konditionen">
+      <div>
+        <h3>Die Website gehört Ihnen</h3>
+        <p data-kondition="eigentum">Domain und Website gehören Ihnen. Ausnahmslos.</p>
+      </div>
+      <div>
+        <h3>Sie bleiben, wo Sie sind</h3>
+        <p data-kondition="bestehend">Die meisten Betriebe bleiben bei ihrem Anbieter. Dann
+           übernehmen wir einfach die bestehende Domain und den Webspace.</p>
+      </div>
+      <div>
+        <h3>Hosting nur, wenn Sie wollen</h3>
+        <p data-kondition="hosting">Hosting im ersten Jahr inklusive. Danach CHF 29 im Monat –
+           aber nur, wenn Sie bei uns hosten möchten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ BEISPIEL -->
+<section class="sek sek--creme" id="beispiel">
+  <div class="wrap">
+    <div class="demo-cta">
+      <div class="browser">
+        <div class="browser__leiste">
+          <span class="browser__punkt"></span>
+          <span class="browser__punkt"></span>
+          <span class="browser__punkt"></span>
+          <span class="browser__url">www.ihr-restaurant.ch</span>
+        </div>
+        <img class="browser__bild" src="assets/img/demo-vorschau.svg" alt="Vorschau der Beispiel-Website Restaurant Seeblick" width="560" height="330">
+      </div>
+      <span class="label label--hell">Beispiel</span>
+      <h2>So könnte Ihr Auftritt aussehen</h2>
+      <p>Wir haben eine komplette Restaurant-Website als Muster gebaut – mit Startseite,
+         Speisekarte und Kontaktseite. Schauen Sie sich in Ruhe um.</p>
+      <div class="btn-reihe btn-reihe--mitte">
+        <a class="btn btn--primaer" href="demo/">Beispiel-Website öffnen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= KONTAKT -->
+<section class="sek sek--dunkel" id="kontakt">
+  <div class="wrap">
+    <div class="kontakt">
+      <div>
+        <span class="label label--hell">Kontakt</span>
+        <h2>Am schnellsten geht es am Telefon.</h2>
+        <p>Rufen Sie an – wir sagen Ihnen in fünf Minuten, was für Ihren Betrieb sinnvoll ist,
+           und schicken Ihnen ein Muster.</p>
+        <a class="tel-gross" data-kontakt="telefon" href="tel:+41523680058">+41 52 368 00 58</a>
+      </div>
+      <dl>
+        <div class="kontakt__zeile">
+          <dt>Adresse</dt>
+          <dd data-kontakt="adresse">Swiss Prime Taste AG<br>Wittenwilerstrasse 25<br>CH-8355 Aadorf</dd>
+        </div>
+        <div class="kontakt__zeile">
+          <dt>Telefon</dt>
+          <dd><a data-kontakt="telefon" href="tel:+41523680058">+41 52 368 00 58</a></dd>
+        </div>
+        <div class="kontakt__zeile">
+          <dt>E-Mail</dt>
+          <dd><a data-kontakt="email" href="mailto:info@swissprimetaste.ch">info@swissprimetaste.ch</a></dd>
+        </div>
+        <div class="kontakt__zeile">
+          <dt>Web</dt>
+          <dd><a href="https://www.swissprimetaste.ch">www.swissprimetaste.ch</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer class="fuss">
+  <div class="fuss__inner">
+    <span>&copy; <span id="jahr">2026</span> Swiss Prime Taste AG · Wittenwilerstrasse 25 · CH-8355 Aadorf</span>
+    <span>
+      <a href="impressum.html">Impressum &amp; Datenschutz</a> ·
+      <a href="https://www.swissprimetaste.ch">swissprimetaste.ch</a> ·
+      <a href="https://www.shrimpshop.ch">shrimpshop.ch</a> ·
+      <a href="demo/">Beispiel-Website</a>
+    </span>
+  </div>
+</footer>
+
+<script src="daten/produkte.js"></script>
+<script src="assets/js/seite.js"></script>
+</body>
+</html>
