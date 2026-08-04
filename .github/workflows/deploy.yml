@@ -1,14 +1,35 @@
 name: spoti.ch aktualisieren
 
-# Laeuft bei JEDER Aenderung auf main und laedt die Website auf mycyon.ch hoch.
-# Zusaetzlich jederzeit von Hand startbar unter Actions -> Run workflow.
+# Laedt die Website bei jeder Aenderung auf main per SFTP zu cyon hoch.
+# Auch von Hand startbar: Actions -> Run workflow.
+#
+# Warum SFTP und nicht FTP: Port 21 antwortet von GitHub aus nicht (Timeout).
+# cyon empfiehlt SFTP ohnehin. Wichtig: SFTP funktioniert bei cyon NUR mit dem
+# Haupt-Webhosting-Login, nicht mit zusaetzlich angelegten FTP-Konten.
+#
+# ---------------------------------------------------------------------------
+# EINMALIG EINZURICHTEN
+#
+# Settings -> Secrets and variables -> Actions -> Secrets:
+#   SFTP_USER      Haupt-Login des cyon-Webhostings
+#   SFTP_PASSWORD  zugehoeriges Passwort
+#
+# Settings -> Secrets and variables -> Actions -> Variables:
+#   SFTP_ZIEL      Zielordner auf dem Server, z. B. public_html/spoti.ch
+#                  PFLICHT. Ohne diesen Wert bricht der Workflow ab, damit
+#                  nichts versehentlich in einer fremden Website landet.
+#   SFTP_HOST      Serveradresse, Standard s039.cyon.net
+#   TROCKENLAUF    auf "true" setzen, um nur zu zeigen was passieren wuerde,
+#                  ohne eine einzige Datei zu schreiben. Fuer den ersten Test.
+# ---------------------------------------------------------------------------
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: ftp-deploy
+  group: deploy
   cancel-in-progress: false
 
 jobs:
@@ -16,25 +37,34 @@ jobs:
     name: Auf spoti.ch hochladen
     runs-on: ubuntu-latest
 
+    env:
+      HOST: ${{ vars.SFTP_HOST || 's039.cyon.net' }}
+      PORT: ${{ vars.SFTP_PORT || 22 }}
+      USER: ${{ secrets.SFTP_USER }}
+      PASS: ${{ secrets.SFTP_PASSWORD }}
+      ZIEL: ${{ vars.SFTP_ZIEL }}
+      TROCKEN: ${{ vars.TROCKENLAUF }}
+
     steps:
       - name: Repo auschecken
         uses: actions/checkout@v4
 
-      - name: Zugangsdaten vorhanden?
-        env:
-          SERVER: ${{ secrets.FTP_SERVER }}
-          USER: ${{ secrets.FTP_USERNAME }}
-          PASS: ${{ secrets.FTP_PASSWORD }}
+      - name: Einrichtung pruefen
         run: |
           fehlt=""
-          [ -n "$SERVER" ] || fehlt="$fehlt FTP_SERVER"
-          [ -n "$USER" ]   || fehlt="$fehlt FTP_USERNAME"
-          [ -n "$PASS" ]   || fehlt="$fehlt FTP_PASSWORD"
+          [ -n "$USER" ] || fehlt="$fehlt SFTP_USER(Secret)"
+          [ -n "$PASS" ] || fehlt="$fehlt SFTP_PASSWORD(Secret)"
           if [ -n "$fehlt" ]; then
-            echo "::error title=Zugangsdaten fehlen::Diese Secrets sind nicht gesetzt:$fehlt — anlegen unter Settings → Secrets and variables → Actions, dann diesen Workflow erneut starten."
+            echo "::error title=Zugangsdaten fehlen::Nicht gesetzt:$fehlt"
             exit 1
           fi
-          echo "Alle drei Secrets vorhanden."
+          if [ -z "$ZIEL" ]; then
+            echo "::error title=Zielordner fehlt::Die Variable SFTP_ZIEL ist nicht gesetzt. Ohne sie laedt dieser Workflow bewusst nichts hoch — sonst koennten die Dateien in einer fremden Website landen. In my.cyon.ch nachsehen, auf welchen Ordner spoti.ch zeigt, und den Pfad unter Settings → Secrets and variables → Actions → Variables als SFTP_ZIEL eintragen."
+            exit 1
+          fi
+          echo "Server : $HOST:$PORT"
+          echo "Benutzer: $USER"
+          echo "Ziel   : $ZIEL"
 
       - name: Pflichtdateien vorhanden?
         run: |
@@ -44,33 +74,60 @@ jobs:
                    public/assets/js/seite.js; do
             [ -f "$f" ] || { echo "::error::Datei fehlt: $f"; exit 1; }
           done
-          echo "Website vollstaendig."
+          echo "Website vollstaendig: $(find public -type f | wc -l) Dateien."
 
       - name: Preisfreigabe pruefen
         run: |
-          if grep -q '"preise_freigegeben": *false' public/daten/produkte.js; then
+          if grep -qE '"preise_freigegeben"[[:space:]]*:[[:space:]]*false[[:space:]]*,' public/daten/produkte.js; then
             echo "::warning title=Preise ausgeblendet::preise_freigegeben steht auf false. Die Seite zeigt ueberall 'Preis auf Anfrage' und einen Hinweisbalken."
           else
             echo "Preise sind freigegeben."
           fi
 
-      - name: Per FTP hochladen
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
-          port: ${{ vars.FTP_PORT || 21 }}
-          local-dir: ./public/
-          server-dir: ${{ vars.FTP_SERVER_DIR || '/' }}
-          dangerous-clean-slate: false
-          log-level: standard
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
-            **/node_modules/**
+      - name: SFTP-Werkzeuge installieren
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass openssh-client
+
+      - name: Zielordner ansehen
+        run: |
+          printf 'cd %s\npwd\nls -la\nbye\n' "$ZIEL" > /tmp/schau.txt
+          echo "--- Inhalt von $ZIEL vor dem Upload ---"
+          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null -o ConnectTimeout=25 \
+            -o PreferredAuthentications=password -o PubkeyAuthentication=no \
+            -P "$PORT" -b /tmp/schau.txt "$USER@$HOST"
+
+      - name: Per SFTP hochladen
+        run: |
+          set -e
+          cd public
+
+          {
+            echo "cd $ZIEL"
+            find . -mindepth 1 -type d | sed 's|^\./||' | sort | while read -r d; do
+              echo "-mkdir \"$d\""
+            done
+            find . -type f | sed 's|^\./||' | sort | while read -r f; do
+              echo "put \"$f\" \"$f\""
+            done
+            echo "bye"
+          } > /tmp/hochladen.txt
+
+          if [ "$TROCKEN" = "true" ]; then
+            echo "::notice title=Trockenlauf::Es wurde nichts geschrieben. Das haette der Workflow gemacht:"
+            cat /tmp/hochladen.txt
+            exit 0
+          fi
+
+          echo "Uebertrage $(find . -type f | wc -l) Dateien nach $ZIEL"
+          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null -o ConnectTimeout=25 \
+            -o PreferredAuthentications=password -o PubkeyAuthentication=no \
+            -P "$PORT" -b /tmp/hochladen.txt "$USER@$HOST"
 
       - name: Fertig
-        run: echo "Hochgeladen. Seite pruefen unter https://www.spoti.ch"
+        run: |
+          if [ "$TROCKEN" = "true" ]; then
+            echo "Trockenlauf beendet. Zum echten Hochladen die Variable TROCKENLAUF entfernen."
+          else
+            echo "Hochgeladen nach $ZIEL. Seite pruefen unter https://www.spoti.ch"
+          fi
