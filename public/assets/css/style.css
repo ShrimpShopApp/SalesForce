@@ -15,8 +15,11 @@
   --text-hell:#5d7079;
   --linie:rgba(255,255,255,.12);
   --linie-dunkel:rgba(13,27,35,.12);
-  --schrift:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --schrift:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --display:"Space Grotesk","Inter","Helvetica Neue",sans-serif;
   --serif:Georgia,"Times New Roman",serif;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
   --max:1180px;
   --radius:4px;
 }
@@ -39,8 +42,8 @@ img{max-width:100%;height:auto;display:block}
 a{color:var(--koralle);text-decoration:none}
 a:hover{text-decoration:underline}
 
-h1,h2,h3,h4{margin:0 0 .5em;line-height:1.15;font-weight:700;letter-spacing:-.02em}
-h1{font-size:clamp(2.1rem,5.4vw,3.9rem)}
+h1,h2,h3,h4{margin:0 0 .5em;line-height:1.12;font-weight:700;letter-spacing:-.02em;font-family:var(--display)}
+h1{font-size:clamp(2.1rem,5.4vw,3.9rem);letter-spacing:-.03em}
 h2{font-size:clamp(1.7rem,3.6vw,2.7rem)}
 h3{font-size:1.25rem}
 p{margin:0 0 1.1em}
@@ -70,9 +73,14 @@ p{margin:0 0 1.1em}
   letter-spacing:.02em;
   border:2px solid transparent;
   cursor:pointer;
-  transition:transform .15s ease,background .15s ease,color .15s ease;
+  transition:transform 160ms var(--ease-out),background 200ms ease,color 200ms ease;
 }
-.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{text-decoration:none;transform:translateY(-2px)}
+  .btn:hover:active{transform:translateY(-1px) scale(.98)}
+}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--koralle);outline-offset:3px;border-radius:var(--radius)}
 .btn--primaer{background:var(--koralle);color:#fff}
 .btn--primaer:hover{background:var(--koralle-hell)}
 .btn--geist{background:transparent;color:var(--creme);border-color:rgba(247,243,236,.45)}
@@ -131,6 +139,16 @@ p{margin:0 0 1.1em}
 .hero__lead{font-size:clamp(1.05rem,2vw,1.32rem);max-width:56ch;color:rgba(247,243,236,.86);margin-bottom:32px}
 .hero__fuss{margin-top:34px;font-size:.9rem;color:rgba(247,243,236,.6)}
 
+/* ------------------------------------------------------ Trust-Leiste ---- */
+.trust{background:var(--tief);border-top:1px solid var(--linie);color:var(--creme)}
+.trust__inner{
+  max-width:var(--max);margin:0 auto;padding:26px 24px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px;
+}
+.trust__punkt{display:flex;flex-direction:column;gap:2px}
+.trust__punkt b{font-family:var(--display);font-size:1.35rem;letter-spacing:-.02em;color:#fff}
+.trust__punkt span{font-size:.85rem;color:rgba(247,243,236,.6)}
+
 /* ------------------------------------------------------- Abschnitte ----- */
 .sek{padding:84px 0}
 .sek--dunkel{background:var(--tief);color:var(--creme)}
@@ -162,6 +180,10 @@ p{margin:0 0 1.1em}
 .karte{
   background:#fff;border:1px solid var(--linie-dunkel);border-radius:var(--radius);
   padding:30px 28px;display:flex;flex-direction:column;position:relative;
+  transition:transform 200ms var(--ease-out),box-shadow 200ms var(--ease-out);
+}
+@media(hover:hover) and (pointer:fine){
+  .karte:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(13,27,35,.12)}
 }
 .karte--top{border-color:var(--koralle);border-width:2px}
 .karte__flagge{
@@ -320,3 +342,16 @@ p{margin:0 0 1.1em}
   padding:10px 20px;font-size:.88rem;font-weight:700;
 }
 .demo-band a{color:#3d2c00;text-decoration:underline}
+
+
+/* ---------------------------------------------------- Scroll-Reveal ----- */
+.zeig{opacity:0;transform:translateY(14px);
+  transition:opacity 380ms var(--ease-out),transform 380ms var(--ease-out);
+  transition-delay:var(--verz,0ms)}
+.zeig.da{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .zeig{transform:none;transition:opacity 200ms ease}
+  .btn,.karte{transition:none}
+}
