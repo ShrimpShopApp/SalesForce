@@ -1,15 +1,12 @@
-# Vorschau auf GitHub Pages - laeuft NUR von Hand.
-#
-# Warum nicht automatisch: spoti.ch ist die eine echte Adresse. Liefe diese
-# Vorschau bei jedem Push mit, gaebe es eine zweite oeffentliche Kopie der
-# Seite unter github.io, die mit spoti.ch um den Google-Platz konkurriert.
-#
-# Zum Anschauen einer Aenderung, bevor sie auf spoti.ch geht:
-# Actions -> "Vorschau auf GitHub Pages" -> Run workflow.
-#
-# Veroeffentlicht ausschliesslich den Ordner public/ - niemals das Repo.
+name: spoti.ch veroeffentlichen
 
-name: Vorschau auf GitHub Pages
+# DAS ist das Deployment von spoti.ch.
+# Die Domain www.spoti.ch zeigt auf GitHub Pages (Settings -> Pages,
+# Custom domain), nicht auf cyon. Jede Aenderung auf main geht hier raus.
+#
+# Veroeffentlicht wird ausschliesslich der Ordner public/ - niemals das
+# Repo-Wurzelverzeichnis. Genau daran ist es vorher gescheitert: mit
+# path '.' lag kein index.html an der Wurzel, also lieferte Pages 404.
 
 on:
   push:
@@ -27,22 +24,47 @@ concurrency:
 
 jobs:
   deploy:
+    name: Auf spoti.ch veroeffentlichen
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Repo auschecken
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Logo aus Textdatei erzeugen
+        run: |
+          base64 -d public/assets/img/logo-hell.png.b64 > public/assets/img/logo-hell.png
+          echo "Logo erzeugt: $(wc -c < public/assets/img/logo-hell.png) Bytes"
+
+      - name: Pflichtdateien vorhanden?
+        run: |
+          set -e
+          for f in public/index.html public/demo/index.html \
+                   public/daten/produkte.js public/assets/css/style.css \
+                   public/assets/js/seite.js public/CNAME; do
+            [ -f "$f" ] || { echo "::error::Datei fehlt: $f"; exit 1; }
+          done
+          echo "Website vollstaendig: $(find public -type f | wc -l) Dateien."
+          echo "Custom domain: $(cat public/CNAME)"
+
+      - name: Preisfreigabe pruefen
+        run: |
+          if grep -qE '"preise_freigegeben"[[:space:]]*:[[:space:]]*false[[:space:]]*,' public/daten/produkte.js; then
+            echo "::warning title=Preise ausgeblendet::preise_freigegeben steht auf false. Die Seite zeigt ueberall 'Preis auf Anfrage' und einen Hinweisbalken."
+          else
+            echo "Preise sind freigegeben."
+          fi
+
+      - name: Pages vorbereiten
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Nur public/ hochladen
         uses: actions/upload-pages-artifact@v3
         with:
           path: './public'
 
-      - name: Deploy to GitHub Pages
+      - name: Veroeffentlichen
         id: deployment
         uses: actions/deploy-pages@v4
