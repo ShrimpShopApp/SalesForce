@@ -140,7 +140,7 @@
     }).join("");
   }
 
-  /* ----------------------------------------------------------- Deal ----- */
+  /* ------------------------------------------------------------ Deal ----- */
   var dealText = el("deal-text");
   if (dealText) { dealText.textContent = D.aktion.deal_text; }
 
@@ -158,7 +158,7 @@
     if (k[feld]) { n.textContent = k[feld]; }
   });
 
-  /* -------------------------------------------------------- Kontakt ----- */
+  /* ------------------------------------------------------- Kontakt ----- */
   var ko = D.kontakt;
   document.querySelectorAll("[data-kontakt]").forEach(function (n) {
     var feld = n.getAttribute("data-kontakt");
@@ -176,6 +176,37 @@
       n.textContent = ko[feld];
     }
   });
+
+  /* ---------------------------------------------------- Scroll-Reveal ---- */
+  var reduziert = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var zeigElemente = document.querySelectorAll(".zeig");
+  if (!("IntersectionObserver" in window) || reduziert) {
+    zeigElemente.forEach(function (n) { n.classList.add("da"); });
+  } else {
+    zeigElemente.forEach(function (n) {
+      // Kinder von Rastern gestaffelt einblenden (30-80ms Abstand)
+      Array.prototype.forEach.call(n.children, function (kind, i) {
+        kind.style.setProperty("--verz", Math.min(i * 60, 360) + "ms");
+        kind.classList.add("zeig");
+      });
+    });
+    var io = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("da");
+          e.target.querySelectorAll(".zeig").forEach(function (k) {
+            k.classList.add("da");
+          });
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -60px 0px", threshold: 0.05 });
+    zeigElemente.forEach(function (n) {
+      if (!n.closest(".zeig") || n.closest(".zeig") === n) { io.observe(n); }
+    });
+  }
 
   /* ------------------------------------------------------------ Jahr ---- */
   var jahr = el("jahr");
