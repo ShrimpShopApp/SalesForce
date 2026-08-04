@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="400" height="280" role="img" aria-label="Terrasse mit Seesicht">
+  <defs><linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e6b86b"/><stop offset="1" stop-color="#c8874a"/></linearGradient></defs>
+  <rect width="400" height="280" fill="url(#himmel)"/>
+  <circle cx="286" cy="82" r="30" fill="#faf6ef" opacity=".8"/>
+  <path d="M0 150l70-42 62 34 66-46 84 46 118-38v46H0z" fill="#2c4a3d" opacity=".75"/>
+  <rect y="164" width="400" height="116" fill="#3f6b78"/>
+  <g stroke="#faf6ef" stroke-width="2.5" opacity=".35" stroke-linecap="round">
+    <path d="M40 190h96M212 204h124M78 220h150M28 244h108M256 236h108"/>
+  </g>
+  <rect x="0" y="150" width="400" height="16" fill="#14272b" opacity=".28"/>
+  <g fill="#14272b" opacity=".55">
+    <rect x="46" y="196" width="8" height="60"/><rect x="346" y="196" width="8" height="60"/>
+    <path d="M20 196h60l-14-30H34zM320 196h60l-14-30h-32z"/>
+  </g>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" width="560" height="330" role="img" aria-label="Vorschau der Beispiel-Website Restaurant Seeblick">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#132a35"/>
+      <stop offset="1" stop-color="#2c4a3d"/>
+    </linearGradient>
+    <linearGradient id="see" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f6b78" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#3f6b78" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="560" height="330" fill="#f7f3ec"/>
+
+  <!-- Hero -->
+  <rect width="560" height="196" fill="url(#hg)"/>
+  <path d="M0 128c60-22 108 12 168-4s112-30 176-12 132 4 216-16v100H0z" fill="url(#see)"/>
+  <circle cx="470" cy="46" r="20" fill="#d9a441" opacity=".5"/>
+
+  <!-- Navigation -->
+  <rect x="0" y="0" width="560" height="34" fill="#0d1b23" opacity=".55"/>
+  <text x="26" y="22" font-family="Georgia,serif" font-size="13" fill="#f7f3ec" letter-spacing="1.6">SEEBLICK</text>
+  <g fill="#f7f3ec" opacity=".62">
+    <rect x="336" y="14" width="38" height="5" rx="2.5"/>
+    <rect x="386" y="14" width="46" height="5" rx="2.5"/>
+    <rect x="444" y="14" width="34" height="5" rx="2.5"/>
+  </g>
+  <rect x="490" y="9" width="46" height="16" rx="3" fill="#c8874a"/>
+
+  <!-- Hero-Text -->
+  <text x="42" y="98" font-family="Georgia,serif" font-size="30" fill="#f7f3ec">Küche am See.</text>
+  <text x="42" y="126" font-family="Georgia,serif" font-size="30" fill="#e6b86b">Seit 1974.</text>
+  <rect x="42" y="146" width="108" height="26" rx="3" fill="#c8874a"/>
+  <rect x="160" y="146" width="108" height="26" rx="3" fill="none" stroke="#f7f3ec" stroke-opacity=".5" stroke-width="1.5"/>
+
+  <!-- Inhalt: drei Karten -->
+  <g>
+    <rect x="42" y="220" width="146" height="80" rx="3" fill="#fff" stroke="#e0d8c9"/>
+    <rect x="207" y="220" width="146" height="80" rx="3" fill="#fff" stroke="#e0d8c9"/>
+    <rect x="372" y="220" width="146" height="80" rx="3" fill="#fff" stroke="#e0d8c9"/>
+
+    <g fill="#c8874a">
+      <rect x="58" y="236" width="42" height="6" rx="3"/>
+      <rect x="223" y="236" width="42" height="6" rx="3"/>
+      <rect x="388" y="236" width="42" height="6" rx="3"/>
+    </g>
+    <g fill="#22333b" opacity=".78">
+      <rect x="58" y="252" width="102" height="7" rx="3.5"/>
+      <rect x="223" y="252" width="88" height="7" rx="3.5"/>
+      <rect x="388" y="252" width="96" height="7" rx="3.5"/>
+    </g>
+    <g fill="#5d7079" opacity=".4">
+      <rect x="58" y="268" width="114" height="5" rx="2.5"/>
+      <rect x="58" y="279" width="86" height="5" rx="2.5"/>
+      <rect x="223" y="268" width="114" height="5" rx="2.5"/>
+      <rect x="223" y="279" width="72" height="5" rx="2.5"/>
+      <rect x="388" y="268" width="114" height="5" rx="2.5"/>
+      <rect x="388" y="279" width="94" height="5" rx="2.5"/>
+    </g>
+  </g>
+
+  <!-- Abschnittstitel -->
+  <rect x="42" y="204" width="92" height="6" rx="3" fill="#22333b" opacity=".45"/>
+</svg>
