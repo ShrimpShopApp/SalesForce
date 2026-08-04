@@ -1,0 +1,35 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editoren
+.vscode/
+.idea/
+*.swp
+
+# ============================================================
+# NIEMALS ins Repo - es ist oeffentlich und wird zusaetzlich
+# ueber GitHub Pages ausgeliefert.
+# ============================================================
+
+# Zugangsdaten
+.env
+*.env
+ftp-*.txt
+zugangsdaten*
+*credentials*
+*.pem
+*.key
+
+# Verkaufsunterlagen: Telefonleitfaden mit Einwandbehandlung,
+# 199er-Klausel, Leadliste mit Personendaten. Bleibt lokal.
+sales/
+
+# Interne Notizen
+INTERN.md
+
+# Temporaer
+node_modules/
+*.log
+~$*
