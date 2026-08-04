@@ -1,26 +1,22 @@
 name: spoti.ch aktualisieren
 
-# Laedt die Website bei jeder Aenderung auf main per SFTP zu cyon hoch.
-# Auch von Hand startbar: Actions -> Run workflow.
-#
-# Warum SFTP und nicht FTP: Port 21 antwortet von GitHub aus nicht (Timeout).
-# cyon empfiehlt SFTP ohnehin. Wichtig: SFTP funktioniert bei cyon NUR mit dem
-# Haupt-Webhosting-Login, nicht mit zusaetzlich angelegten FTP-Konten.
+# Laedt die Website bei jeder Aenderung auf main per FTP zu cyon hoch.
+# Aufgebaut wie der bewaehrte Deploy von taragona.org: FTP-Deploy-Action ohne
+# protocol-Angabe (also einfaches FTP) und ein zweiter Versuch, falls der
+# erste in einen Timeout laeuft.
 #
 # ---------------------------------------------------------------------------
-# EINMALIG EINZURICHTEN
+# EINRICHTUNG
 #
-# Settings -> Secrets and variables -> Actions -> Secrets:
-#   SFTP_USER      Haupt-Login des cyon-Webhostings
-#   SFTP_PASSWORD  zugehoeriges Passwort
+# Secrets   FTP_PASSWORD   Passwort des FTP-Kontos
+# Variables FTP_USER       Standard admin@spoti.ch
+#           FTP_HOST       Standard s039.cyon.net
+#           FTP_ZIEL       Standard /salesforce/
 #
-# Settings -> Secrets and variables -> Actions -> Variables:
-#   SFTP_ZIEL      Zielordner auf dem Server, z. B. public_html/spoti.ch
-#                  PFLICHT. Ohne diesen Wert bricht der Workflow ab, damit
-#                  nichts versehentlich in einer fremden Website landet.
-#   SFTP_HOST      Serveradresse, Standard s039.cyon.net
-#   TROCKENLAUF    auf "true" setzen, um nur zu zeigen was passieren wuerde,
-#                  ohne eine einzige Datei zu schreiben. Fuer den ersten Test.
+# Zum Zielordner: Das FTP-Konto admin@spoti.ch startet in
+# /home/muehlefe/public_html/taragona.org/webwork
+# Der Webroot von spoti.ch liegt eine Ebene tiefer in salesforce/ —
+# deshalb /salesforce/ und nicht /.
 # ---------------------------------------------------------------------------
 
 on:
@@ -37,34 +33,8 @@ jobs:
     name: Auf spoti.ch hochladen
     runs-on: ubuntu-latest
 
-    env:
-      HOST: ${{ vars.SFTP_HOST || 's039.cyon.net' }}
-      PORT: ${{ vars.SFTP_PORT || 22 }}
-      USER: ${{ secrets.SFTP_USER }}
-      PASS: ${{ secrets.SFTP_PASSWORD }}
-      ZIEL: ${{ vars.SFTP_ZIEL }}
-      TROCKEN: ${{ vars.TROCKENLAUF }}
-
     steps:
-      - name: Repo auschecken
-        uses: actions/checkout@v4
-
-      - name: Einrichtung pruefen
-        run: |
-          fehlt=""
-          [ -n "$USER" ] || fehlt="$fehlt SFTP_USER(Secret)"
-          [ -n "$PASS" ] || fehlt="$fehlt SFTP_PASSWORD(Secret)"
-          if [ -n "$fehlt" ]; then
-            echo "::error title=Zugangsdaten fehlen::Nicht gesetzt:$fehlt"
-            exit 1
-          fi
-          if [ -z "$ZIEL" ]; then
-            echo "::error title=Zielordner fehlt::Die Variable SFTP_ZIEL ist nicht gesetzt. Ohne sie laedt dieser Workflow bewusst nichts hoch — sonst koennten die Dateien in einer fremden Website landen. In my.cyon.ch nachsehen, auf welchen Ordner spoti.ch zeigt, und den Pfad unter Settings → Secrets and variables → Actions → Variables als SFTP_ZIEL eintragen."
-            exit 1
-          fi
-          echo "Server : $HOST:$PORT"
-          echo "Benutzer: $USER"
-          echo "Ziel   : $ZIEL"
+      - uses: actions/checkout@v4
 
       - name: Pflichtdateien vorhanden?
         run: |
@@ -75,6 +45,7 @@ jobs:
             [ -f "$f" ] || { echo "::error::Datei fehlt: $f"; exit 1; }
           done
           echo "Website vollstaendig: $(find public -type f | wc -l) Dateien."
+          echo "Ziel: ${{ vars.FTP_USER || 'admin@spoti.ch' }}@${{ vars.FTP_HOST || 's039.cyon.net' }} -> ${{ vars.FTP_ZIEL || '/salesforce/' }}"
 
       - name: Preisfreigabe pruefen
         run: |
@@ -84,50 +55,36 @@ jobs:
             echo "Preise sind freigegeben."
           fi
 
-      - name: SFTP-Werkzeuge installieren
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass openssh-client
+      - name: FTP Deploy
+        id: upload1
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ vars.FTP_HOST || 's039.cyon.net' }}
+          username: ${{ vars.FTP_USER || 'admin@spoti.ch' }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.FTP_ZIEL || '/salesforce/' }}
+          local-dir: ./public/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
 
-      - name: Zielordner ansehen
-        run: |
-          printf 'cd %s\npwd\nls -la\nbye\n' "$ZIEL" > /tmp/schau.txt
-          echo "--- Inhalt von $ZIEL vor dem Upload ---"
-          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null -o ConnectTimeout=25 \
-            -o PreferredAuthentications=password -o PubkeyAuthentication=no \
-            -P "$PORT" -b /tmp/schau.txt "$USER@$HOST"
-
-      - name: Per SFTP hochladen
-        run: |
-          set -e
-          cd public
-
-          {
-            echo "cd $ZIEL"
-            find . -mindepth 1 -type d | sed 's|^\./||' | sort | while read -r d; do
-              echo "-mkdir \"$d\""
-            done
-            find . -type f | sed 's|^\./||' | sort | while read -r f; do
-              echo "put \"$f\" \"$f\""
-            done
-            echo "bye"
-          } > /tmp/hochladen.txt
-
-          if [ "$TROCKEN" = "true" ]; then
-            echo "::notice title=Trockenlauf::Es wurde nichts geschrieben. Das haette der Workflow gemacht:"
-            cat /tmp/hochladen.txt
-            exit 0
-          fi
-
-          echo "Uebertrage $(find . -type f | wc -l) Dateien nach $ZIEL"
-          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null -o ConnectTimeout=25 \
-            -o PreferredAuthentications=password -o PubkeyAuthentication=no \
-            -P "$PORT" -b /tmp/hochladen.txt "$USER@$HOST"
+      - name: FTP Deploy (Wiederholung bei Timeout)
+        if: steps.upload1.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ vars.FTP_HOST || 's039.cyon.net' }}
+          username: ${{ vars.FTP_USER || 'admin@spoti.ch' }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ vars.FTP_ZIEL || '/salesforce/' }}
+          local-dir: ./public/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/node_modules/**
 
       - name: Fertig
-        run: |
-          if [ "$TROCKEN" = "true" ]; then
-            echo "Trockenlauf beendet. Zum echten Hochladen die Variable TROCKENLAUF entfernen."
-          else
-            echo "Hochgeladen nach $ZIEL. Seite pruefen unter https://www.spoti.ch"
-          fi
+        run: echo "Hochgeladen. Seite pruefen unter https://www.spoti.ch"
