@@ -39,7 +39,7 @@ hero rather than something hidden below three feature cards.
 
 ---
 
-## 2. Fonts
+## 2. Fonts and brand
 
 | Role | Family | Stack |
 |---|---|---|
@@ -49,6 +49,12 @@ hero rather than something hidden below three feature cards.
 
 Space Grotesk is already in the repo and stays — its wide, slightly mechanical
 caps suit article numbers and calibre strings.
+
+**Logo rule (Chris, 06.08.2026): every deliverable carries the SPT logo** —
+website headers, one-pagers, artifacts, PDFs, everything. `logo-hell.png` on
+dark grounds, `logo-dunkel.png` on light grounds. A text wordmark is not a
+substitute. Sole exception: the demo restaurant's own pages, where SPT appears
+only in the "Gebaut von" credit.
 
 Mono is not decoration. It carries **article numbers, calibres, prices, counts** —
 every value a chef reads off a sheet and compares. Tabular figures required:
@@ -198,6 +204,7 @@ never eszett.
 
 ## 9. Before committing
 
+- [ ] SPT logo present on the deliverable (hell on dark, dunkel on light)
 - [ ] No Inter / Roboto / Open Sans / Arial / system-ui anywhere
 - [ ] No purple, no indigo, no third accent
 - [ ] Every spacing value a multiple of 8 (4 only for optical nudges)
