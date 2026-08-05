@@ -33,10 +33,29 @@ jobs:
       - name: Repo auschecken
         uses: actions/checkout@v4
 
-      - name: Logo aus Textdatei erzeugen
+      - name: Bilder aus Textdateien erzeugen
         run: |
-          base64 -d public/assets/img/logo-hell.png.b64 > public/assets/img/logo-hell.png
-          echo "Logo erzeugt: $(wc -c < public/assets/img/logo-hell.png) Bytes"
+          for b in public/assets/img/*.b64; do
+            ziel="${b%.b64}"
+            base64 -d "$b" > "$ziel"
+            echo "erzeugt: $ziel ($(wc -c < "$ziel") Bytes)"
+          done
+
+      - name: Fotos laden (Unsplash-Lizenz, siehe BILDNACHWEIS.md)
+        run: |
+          set -e
+          B="https://images.unsplash.com/photo-"
+          Z="public/assets/img"
+          curl -fsSL "${B}1773806902883-8a65768c75f6?q=85&w=1568&h=704&fit=crop&fm=webp" -o "$Z/foto-hero-see.webp"
+          curl -fsSL "${B}1684253193395-bb87ad32d4be?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-crevetten-grill.webp"
+          curl -fsSL "${B}1717465962264-517140fe69b1?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-fisch-ofen.webp"
+          curl -fsSL "${B}1760546070850-a8a3531bb857?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-terrasse.webp"
+          curl -fsSL "${B}1756364084889-9a8d9ece6112?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-rohware.webp"
+          for f in "$Z"/foto-*.webp; do
+            g=$(wc -c < "$f")
+            [ "$g" -gt 10000 ] || { echo "::error::Foto zu klein/fehlerhaft: $f ($g B)"; exit 1; }
+            echo "geladen: $f ($g Bytes)"
+          done
 
       - name: Pflichtdateien vorhanden?
         run: |
