@@ -14,7 +14,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Source+Sans+3:wght@200;400;800&amp;family=Space+Grotesk:wght@700&amp;display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -37,20 +37,35 @@
 <!-- ================================================================ HERO -->
 <section class="hero" id="top">
   <div class="hero__inner">
-    <span class="label label--hell" id="aktion-gueltig">Gastro-Aktion 2026</span>
-    <h1>Sie kaufen Crevetten.<br>Wir bauen Ihnen die <em>Website</em>.</h1>
-    <p class="hero__lead">
-      Black Tiger direkt vom Schweizer Importeur – True Count, 100&nbsp;% naturbelassen,
-      ohne Antibiotika, rückverfolgbar bis zum Muttertier. Wer bei uns einsteigt, bekommt seinen neuen
-      Webauftritt gratis dazu. Der Aufbau kostet Sie nichts – kein Abo, keine versteckten Kosten.
-    </p>
-    <div class="btn-reihe">
-      <a class="btn btn--primaer" href="#sortiment">Sortiment &amp; Preise</a>
-      <a class="btn btn--geist" href="demo/">Beispiel-Website ansehen</a>
+    <div>
+      <span class="label label--hell" id="aktion-gueltig">Gastro-Aktion 2026</span>
+      <h1>Sie kaufen Crevetten.<br>Wir bauen Ihnen die <em>Website</em>.</h1>
+      <p class="hero__lead">
+        Black Tiger direkt vom Schweizer Importeur – True Count, 100&nbsp;% naturbelassen,
+        ohne Antibiotika, rückverfolgbar bis zum Muttertier. Wer bei uns einsteigt, bekommt seinen neuen
+        Webauftritt gratis dazu. Der Aufbau kostet Sie nichts – kein Abo, keine versteckten Kosten.
+      </p>
+      <div class="btn-reihe">
+        <a class="btn btn--primaer" href="#sortiment">Sortiment &amp; Preise</a>
+        <a class="btn btn--geist" href="demo/">Beispiel-Website ansehen</a>
+      </div>
+      <p class="hero__fuss">
+        Swiss Prime Taste AG · Aadorf TG · Produzent und Direkt-Importeur seit über 20&nbsp;Jahren
+      </p>
     </div>
-    <p class="hero__fuss">
-      Swiss Prime Taste AG · Aadorf TG · Produzent und Direkt-Importeur seit über 20&nbsp;Jahren
-    </p>
+
+    <aside class="etikett" aria-label="Eckdaten der Aktion">
+      <div class="etikett__kopf"><span>Gastro-Aktion</span><span>2026</span></div>
+      <dl>
+        <div class="etikett__zeile"><dt>Gültig bis</dt><dd data-etikett="gueltig_bis">–</dd></div>
+        <div class="etikett__zeile"><dt>Einstieg ab</dt><dd data-etikett="mindestmenge">–</dd></div>
+        <div class="etikett__zeile"><dt>Sortiment</dt><dd data-etikett="artikel">–</dd></div>
+        <div class="etikett__zeile"><dt>Davon Bio</dt><dd data-etikett="bio">–</dd></div>
+        <div class="etikett__zeile"><dt>Zählweise</dt><dd>True Count</dd></div>
+        <div class="etikett__zeile"><dt>Website</dt><dd>CHF 0.–</dd></div>
+      </dl>
+      <div class="etikett__fuss">Ab Lager Aadorf TG · Tiefgekühlt</div>
+    </aside>
   </div>
 </section>
 
@@ -67,7 +82,7 @@
 <!-- ============================================================== ABLAUF -->
 <section class="sek" id="angebot">
   <div class="wrap">
-    <div class="sek__kopf sek__kopf--mitte">
+    <div class="sek__kopf">
       <span class="label">So läuft es ab</span>
       <h2>Drei Schritte, keine Überraschungen</h2>
       <p>Sie bestellen Ware, die Sie ohnehin brauchen. Die Website kommt obendrauf.</p>
@@ -109,9 +124,12 @@
 
     <div class="preis-warnung" id="preis-warnung" hidden></div>
 
-    <div class="karten zeig" id="produkt-karten"></div>
+    <div class="emp zeig" id="produkt-karten"></div>
 
-    <h3 style="margin:56px 0 20px;font-size:1.35rem">Das ganze Sortiment</h3>
+    <div class="sek__kopf" style="margin-bottom:32px">
+      <span class="label">Preisliste</span>
+      <h2>Das ganze Sortiment</h2>
+    </div>
 
     <div class="liste-huelle zeig">
       <table class="liste" id="preisliste"></table>
@@ -119,12 +137,12 @@
 
     <div class="restposten" id="restposten" hidden></div>
 
-    <div id="erklaerungen" style="margin-top:52px">
+    <div id="erklaerungen" style="margin-top:48px">
       <span class="label">Zwei Begriffe, die auf der Rechnung zählen</span>
       <div class="erklaerungen zeig" id="erklaerungen-inhalt"></div>
     </div>
 
-    <p class="klein" style="margin-top:28px;color:var(--text-hell)">
+    <p class="klein" style="margin-top:32px;color:var(--text-hell)">
       <span data-kondition="glasur">Alle Artikel roh, einzeln gefrostet (IQF), mit 20 % Glasur.</span>
       Preise exkl. MwSt., ab Lager Aadorf. Weitere Kaliber und Aufmachungen auf Anfrage –
       unser Sortiment umfasst zusätzlich Vannamei, Fisch, Muscheln und Value-Added-Produkte.
@@ -148,11 +166,11 @@
 </section>
 
 <!-- ================================================================ DEAL -->
-<section class="sek">
+<section class="sek sek--deal">
   <div class="wrap">
     <div class="deal zeig">
       <div>
-        <span class="label" style="color:rgba(255,255,255,.75)">Der Deal</span>
+        <span class="label">Der Deal</span>
         <h2>Ihre neue Website. Auf unsere Kosten.</h2>
         <p id="deal-text">Ab 20 kg Jahresabnahme bauen wir Ihnen Ihre neue Website – kostenlos.</p>
       </div>
@@ -189,6 +207,15 @@
 <section class="sek sek--creme" id="beispiel">
   <div class="wrap">
     <div class="demo-cta zeig">
+      <div class="demo-cta__text">
+        <span class="label">Beispiel</span>
+        <h2>So könnte Ihr Auftritt aussehen</h2>
+        <p>Wir haben eine komplette Restaurant-Website als Muster gebaut – mit Startseite,
+           Speisekarte und Kontaktseite. Schauen Sie sich in Ruhe um.</p>
+        <div class="btn-reihe">
+          <a class="btn btn--primaer" href="demo/">Beispiel-Website öffnen</a>
+        </div>
+      </div>
       <div class="browser">
         <div class="browser__leiste">
           <span class="browser__punkt"></span>
@@ -196,14 +223,7 @@
           <span class="browser__punkt"></span>
           <span class="browser__url">www.ihr-restaurant.ch</span>
         </div>
-        <img class="browser__bild" src="assets/img/demo-vorschau.svg" alt="Vorschau der Beispiel-Website Restaurant Seeblick" width="560" height="330">
-      </div>
-      <span class="label label--hell">Beispiel</span>
-      <h2>So könnte Ihr Auftritt aussehen</h2>
-      <p>Wir haben eine komplette Restaurant-Website als Muster gebaut – mit Startseite,
-         Speisekarte und Kontaktseite. Schauen Sie sich in Ruhe um.</p>
-      <div class="btn-reihe btn-reihe--mitte">
-        <a class="btn btn--primaer" href="demo/">Beispiel-Website öffnen</a>
+        <img class="browser__bild" src="assets/img/demo-vorschau.webp" alt="Vorschau der Beispiel-Website Restaurant Seeblick" width="900" height="529">
       </div>
     </div>
   </div>
