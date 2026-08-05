@@ -496,3 +496,6 @@ p{margin:0;max-width:68ch}
   .btn,.tel-gross{transition:none}
   .btn:active{transform:none}
 }
+
+/* Anker springen sonst unter den fixen Kopfbalken */
+[id]{scroll-margin-top:88px}
