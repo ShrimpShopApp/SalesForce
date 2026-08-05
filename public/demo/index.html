@@ -7,6 +7,9 @@
 <meta name="description" content="Muster-Website eines Gastronomiebetriebs, erstellt von Swiss Prime Taste AG. Restaurant Seeblick ist ein fiktives Beispiel.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&amp;family=Instrument+Sans:wght@400;700&amp;display=swap">
 <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
@@ -30,8 +33,10 @@
 
 <!-- =============================================================== HERO -->
 <section class="d-hero">
-  <div class="d-hero__sonne"></div>
-  <img class="d-hero__wellen" src="../assets/img/demo-wellen.svg" alt="" width="1440" height="260">
+  <div class="d-foto d-hero__bild">
+    <img src="../assets/img/foto-hero-see.webp" alt="Gartenterrasse mit Tischen direkt am See" width="1568" height="704">
+  </div>
+  <div class="d-hero__schleier"></div>
   <div class="d-hero__inner">
     <span class="d-label" style="color:var(--messing-hell)">Musterhausen am See</span>
     <h1>Küche am See.<br><em>Seit 1974.</em></h1>
@@ -56,28 +61,37 @@
       <p>Kein Schnickschnack, keine langen Karten. Wir kochen wenige Dinge, diese aber richtig.</p>
     </div>
 
-    <div class="d-drei">
-      <article class="d-karte">
-        <img class="d-karte__bild" src="../assets/img/demo-teller-1.svg" alt="Gegrillte Black Tiger Crevetten" width="400" height="280">
-        <div class="d-karte__text">
+    <div class="d-reihen">
+      <article class="d-reihe">
+        <div class="d-foto d-foto--q d-reihe__foto">
+          <img src="../assets/img/foto-crevetten-grill.webp" alt="Gegrillte Crevetten mit Kapern auf schwarzem Teller" width="938" height="704" loading="lazy">
+        </div>
+        <div class="d-reihe__text">
+          <span class="d-reihe__nr">№ 1</span>
           <h3>Crevetten vom Grill</h3>
           <p>Black Tiger aus den Mangroven Vietnams, naturbelassen und von Hand entdarmt.
              Nur Olivenöl, Knoblauch, Zitrone – mehr braucht es nicht.</p>
         </div>
       </article>
 
-      <article class="d-karte">
-        <img class="d-karte__bild" src="../assets/img/demo-teller-2.svg" alt="Fisch aus dem Ofen" width="400" height="280">
-        <div class="d-karte__text">
+      <article class="d-reihe">
+        <div class="d-foto d-foto--q d-reihe__foto">
+          <img src="../assets/img/foto-fisch-ofen.webp" alt="Zwei ganze Fische auf dem Blech aus dem Ofen" width="938" height="704" loading="lazy">
+        </div>
+        <div class="d-reihe__text">
+          <span class="d-reihe__nr">№ 2</span>
           <h3>Fisch aus dem Ofen</h3>
           <p>Ganze Fische im Salzmantel, am Tisch tranchiert. Was wir bekommen, steht am
              Abend auf der Tafel neben dem Eingang.</p>
         </div>
       </article>
 
-      <article class="d-karte">
-        <img class="d-karte__bild" src="../assets/img/demo-teller-3.svg" alt="Terrasse mit Seesicht" width="400" height="280">
-        <div class="d-karte__text">
+      <article class="d-reihe">
+        <div class="d-foto d-foto--q d-reihe__foto">
+          <img src="../assets/img/foto-terrasse.webp" alt="Terrassentisch mit Sonnenschirm und Blick aufs Wasser" width="938" height="704" loading="lazy">
+        </div>
+        <div class="d-reihe__text">
+          <span class="d-reihe__nr">№ 3</span>
           <h3>Terrasse mit Seesicht</h3>
           <p>Vierzig Plätze direkt am Wasser, ab dem ersten warmen Tag geöffnet.
              Reservieren lohnt sich – vor allem am Wochenende.</p>
@@ -134,7 +148,7 @@
       </div>
     </div>
   </div>
-      <p style="text-align:center;color:var(--tinte-hell);font-size:.9rem;margin-top:44px"><em>Muster-Website von Swiss Prime Taste AG. „Restaurant Seeblick“ gibt es nicht – Adresse, Telefonnummer, Zeiten und Personen sind erfunden.</em></p>
+      <p class="d-hinweis"><em>Muster-Website von Swiss Prime Taste AG. „Restaurant Seeblick“ gibt es nicht – Adresse, Telefonnummer, Zeiten und Personen sind erfunden.</em></p>
 </section>
 
 <footer class="d-fuss">
