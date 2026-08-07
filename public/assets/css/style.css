@@ -6,20 +6,22 @@
 
 :root{
   /* Farbe — eine Dominante, ein Akzent (DESIGN.md §3) */
-  --tief:#0d1b23;
-  --tief-2:#132a35;
-  --tief-3:#1b3743;
-  --koralle:#e8562f;
-  --koralle-hell:#ff7a52;
+  --tief:#020202;
+  --tief-2:#101010;
+  --tief-3:#1b1b1b;
+  --koralle:#d7b55d;      /* CI-Gold (shrimpshop.ch Button) */
+  --koralle-hell:#dfc876; /* CI-Gold hell */
+  --akzent-tinte:#7a6023; /* Gold, abgedunkelt fuer Text auf hellem Grund */
   --creme:#f7f3ec;
   --creme-2:#ece5d9;
   --text:#22333b;
   --text-hell:#5d7079;
   --linie:rgba(255,255,255,.14);
-  --linie-dunkel:rgba(13,27,35,.14);
+  --linie-dunkel:rgba(2,2,2,.16);
   /* semantisch, keine Palette: */
-  --bio:#2f7d32;
-  --gold:#d9a441;
+  --bio:#2e9e63;      /* CI-Organic-Gruen, abgedunkelt fuer hellen Grund */
+  --bio-hell:#60e098; /* CI-Organic-Gruen (shrimpshop.ch) auf dunklem Grund */
+  --gold:#b5964e;     /* Hinweisrand */
 
   /* Schrift (DESIGN.md §2) */
   --schrift:"Source Sans 3","Helvetica Neue",sans-serif;
@@ -61,7 +63,7 @@ a{color:inherit}
 a:focus-visible,button:focus-visible,.btn:focus-visible{
   outline:3px solid var(--koralle);outline-offset:3px;border-radius:var(--radius)
 }
-::selection{background:var(--koralle);color:#fff}
+::selection{background:var(--koralle);color:#020202}
 
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;letter-spacing:-.01em;margin:0}
 h1{font-size:var(--t-hero)}
@@ -84,7 +86,7 @@ p{margin:0;max-width:68ch}
   font-weight:400;
   letter-spacing:.22em;
   text-transform:uppercase;
-  color:var(--koralle);
+  color:var(--akzent-tinte);
   margin:0 0 16px;
 }
 .label--hell{color:var(--koralle-hell)}
@@ -106,7 +108,7 @@ p{margin:0;max-width:68ch}
              color 200ms ease,border-color 200ms ease;
 }
 .btn:active{transform:scale(.97)}
-.btn--primaer{background:var(--koralle);color:#fff}
+.btn--primaer{background:var(--koralle);color:#020202}
 .btn--geist{border-color:var(--linie);color:var(--creme)}
 .btn--dunkel{background:var(--tief);color:var(--creme)}
 @media(hover:hover) and (pointer:fine){
@@ -151,8 +153,8 @@ p{margin:0;max-width:68ch}
 .hero__schleier{
   position:absolute;inset:0;
   background:
-    linear-gradient(to bottom,rgba(13,27,35,.62) 0,rgba(13,27,35,.18) 30%,rgba(13,27,35,.28) 72%,rgba(13,27,35,.96) 100%),
-    linear-gradient(98deg,rgba(13,27,35,.94) 0,rgba(13,27,35,.86) 30%,rgba(13,27,35,.5) 58%,rgba(13,27,35,.32) 100%);
+    linear-gradient(to bottom,rgba(2,2,2,.62) 0,rgba(2,2,2,.18) 30%,rgba(2,2,2,.28) 72%,rgba(2,2,2,.96) 100%),
+    linear-gradient(98deg,rgba(2,2,2,.94) 0,rgba(2,2,2,.86) 30%,rgba(2,2,2,.5) 58%,rgba(2,2,2,.32) 100%);
 }
 .hero__inner{
   position:relative;
@@ -173,7 +175,7 @@ p{margin:0;max-width:68ch}
   font-family:var(--mono);
   border:1px solid var(--linie);
   border-radius:var(--radius);
-  background:rgba(13,27,35,.9);
+  background:rgba(2,2,2,.9);
 }
 .etikett__kopf{
   padding:16px 24px;
@@ -238,7 +240,7 @@ p{margin:0;max-width:68ch}
   display:block;
   font-family:var(--schrift);font-weight:200;
   font-size:3.5rem;line-height:1;
-  color:var(--koralle);
+  color:var(--akzent-tinte);
   font-variant-numeric:tabular-nums;
 }
 .schritt h3{margin:16px 0 8px}
@@ -258,7 +260,7 @@ p{margin:0;max-width:68ch}
 }
 .emp__haupt-schleier{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(13,27,35,.92) 0,rgba(13,27,35,.35) 55%,rgba(13,27,35,.15) 100%);
+  background:linear-gradient(to top,rgba(2,2,2,.92) 0,rgba(2,2,2,.35) 55%,rgba(2,2,2,.15) 100%);
 }
 .emp__haupt > :not(.emp__haupt-bild):not(.emp__haupt-schleier){position:relative}
 .emp__flagge{
@@ -285,8 +287,9 @@ p{margin:0;max-width:68ch}
 }
 .emp__neben{display:flex;flex-direction:column;gap:48px;justify-content:center}
 .emp__klein{border-top:1px solid var(--linie-dunkel);padding-top:24px}
-.emp__klein .emp__flagge{color:var(--koralle)}
+.emp__klein .emp__flagge{color:var(--akzent-tinte)}
 .emp__klein .emp__flagge--bio{color:var(--bio)}
+.emp__haupt .emp__flagge--bio{color:var(--bio-hell)}
 .emp__klein h3{margin:8px 0}
 .emp__klein p{font-size:.9375rem;color:var(--text-hell)}
 .emp__klein .emp__preis b{color:var(--text);font-size:1.375rem}
@@ -311,7 +314,7 @@ p{margin:0;max-width:68ch}
 }
 .liste__gruppe th{
   font-family:var(--mono);font-size:var(--t-meta);font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--koralle);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--akzent-tinte);
   padding:40px 0 8px;border-bottom:1px solid var(--text);
 }
 .liste td strong{font-weight:800;font-size:1rem}
@@ -328,7 +331,7 @@ p{margin:0;max-width:68ch}
   letter-spacing:.02em;
 }
 @media(hover:hover) and (pointer:fine){
-  .liste tbody tr:not(.liste__gruppe):hover{background:rgba(13,27,35,.035)}
+  .liste tbody tr:not(.liste__gruppe):hover{background:rgba(2,2,2,.045)}
 }
 
 .chip{
@@ -385,14 +388,14 @@ p{margin:0;max-width:68ch}
 }
 
 /* ------------------------------------------------------------------ Deal */
-.sek--deal{background:var(--koralle);color:#fff}
+.sek--deal{background:var(--koralle);color:#0a0a0a}
 .deal{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:start}
-.deal .label{color:rgba(255,255,255,.8)}
-.deal h2{color:#fff;max-width:14ch}
-.deal p{margin-top:16px;color:rgba(255,255,255,.9)}
-.deal__liste{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.35)}
+.deal .label{color:rgba(2,2,2,.7)}
+.deal h2{color:#0a0a0a;max-width:14ch}
+.deal p{margin-top:16px;color:rgba(2,2,2,.85)}
+.deal__liste{list-style:none;margin:0;padding:0;border-top:1px solid rgba(2,2,2,.4)}
 .deal__liste li{
-  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.35);
+  padding:12px 0;border-bottom:1px solid rgba(2,2,2,.4);
   display:flex;gap:16px;align-items:baseline;font-size:.9375rem;
 }
 .deal__liste li::before{
@@ -402,9 +405,9 @@ p{margin:0;max-width:68ch}
   margin-top:64px;
   display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
 }
-.sek--deal .konditionen > div{border-top:1px solid rgba(255,255,255,.35);padding-top:24px}
-.sek--deal .konditionen h3{color:#fff}
-.sek--deal .konditionen p{font-size:.9375rem;color:rgba(255,255,255,.85);margin-top:8px}
+.sek--deal .konditionen > div{border-top:1px solid rgba(2,2,2,.4);padding-top:24px}
+.sek--deal .konditionen h3{color:#0a0a0a}
+.sek--deal .konditionen p{font-size:.9375rem;color:rgba(2,2,2,.8);margin-top:8px}
 
 /* ---------------------------------------------------------- Beispielband */
 .demo-cta{
@@ -417,7 +420,7 @@ p{margin:0;max-width:68ch}
   border-radius:var(--radius);overflow:hidden;
   border:1px solid var(--linie-dunkel);
   background:#fff;
-  box-shadow:0 24px 60px rgba(13,27,35,.18);
+  box-shadow:0 24px 60px rgba(0,0,0,.3);
 }
 .browser__leiste{
   display:flex;align-items:center;gap:8px;
