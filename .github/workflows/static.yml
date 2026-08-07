@@ -51,7 +51,6 @@ jobs:
           curl -fsSL "${B}1717465962264-517140fe69b1?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-fisch-ofen.webp"
           curl -fsSL "${B}1760546070850-a8a3531bb857?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-terrasse.webp"
           curl -fsSL "${B}1756364084889-9a8d9ece6112?q=85&w=938&h=704&fit=crop&fm=webp"  -o "$Z/foto-rohware.webp"
-          curl -fsSL "${B}1749639240076-0e4fe6289fde?q=82&w=1920&h=900&fit=crop&fm=webp" -o "$Z/foto-hero-grill.webp"
           curl -fsSL "${B}1580929753530-ef52238116c5?q=82&w=1568&h=624&fit=crop&fm=webp" -o "$Z/foto-tafel-kerzen.webp"
           curl -fsSL "${B}1726873800099-53f5496281e0?q=82&w=1568&h=624&fit=crop&fm=webp" -o "$Z/foto-fassade-abend.webp"
           curl -fsSL "${B}1552960226-639240203497?q=85&w=938&h=704&fit=crop&fm=webp"   -o "$Z/foto-interieur.webp"

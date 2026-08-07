@@ -14,7 +14,6 @@ direkt vom Unsplash-CDN (Schritt "Fotos laden").
 | foto-fisch-ofen.webp | Ganze Fische auf Backblech | photo-1717465962264-517140fe69b1 |
 | foto-terrasse.webp | Terrassentisch mit Seeblick | photo-1760546070850-a8a3531bb857 |
 | foto-rohware.webp | Rohe Crevetten auf Eis | photo-1756364084889-9a8d9ece6112 |
-| foto-hero-grill.webp | Crevetten auf dem Grill, gluehende Kohlen | photo-1749639240076-0e4fe6289fde |
 | foto-tafel-kerzen.webp | Gedeckter Tisch, Kerzen und Wein am Abend | photo-1580929753530-ef52238116c5 |
 | foto-fassade-abend.webp | Beleuchtete Restaurantfassade am Abend | photo-1726873800099-53f5496281e0 |
 | foto-interieur.webp | Gastraum mit warmem Lampenlicht | photo-1552960226-639240203497 |
@@ -31,8 +30,9 @@ und Bildregie von uns. Keine Fremdrechte, keine Namensnennung noetig.
 | video/bt-film-mobil.mp4 | dasselbe, leichtere Fassung fuer schmale Viewports |
 | img/bt-film-poster.jpg | erstes Vollbild des Films (Standbild) |
 | img/bt-film-poster-mobil.jpg | erstes Vollbild der Mobil-Fassung |
+| img/bt-hero.jpg | Hero der Startseite: rohe Black Tiger auf Schiefer, linke Bildhaelfte bewusst leer fuer die Ueberschrift |
 | img/bt-eis.jpg | einzeln gefrostete Crevetten mit Reif (derzeit ungenutzt) |
-| img/bt-bio.jpg | einzelne rohe Crevette auf dunklem Schiefer (derzeit ungenutzt) |
+| img/bt-bio.jpg | einzelne rohe Crevette auf dunklem Schiefer, Qualitaets-Sektion |
 | img/bt-og.jpg | Standbild des Films als Teilen-Vorschau (og:image) |
 
 Und fuer den Scroll-Film der Demo (`demo/index.html`), erzeugt gleich, aber in
