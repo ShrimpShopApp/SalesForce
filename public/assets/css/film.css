@@ -36,8 +36,8 @@
 .film__schleier{
   position:absolute;inset:0;z-index:2;
   background:
-    linear-gradient(to bottom,rgba(2,2,2,.72) 0,rgba(2,2,2,.22) 26%,rgba(2,2,2,.30) 70%,rgba(2,2,2,.92) 100%),
-    linear-gradient(96deg,rgba(2,2,2,.88) 0,rgba(2,2,2,.62) 42%,rgba(2,2,2,.20) 100%);
+    linear-gradient(to bottom,rgba(2,2,2,.55) 0,rgba(2,2,2,.10) 30%,rgba(2,2,2,.18) 72%,rgba(2,2,2,.85) 100%),
+    linear-gradient(96deg,rgba(2,2,2,.74) 0,rgba(2,2,2,.34) 38%,rgba(2,2,2,0) 72%);
 }
 
 /* Fortschritt: eine Haarlinie, kein Balken */
@@ -59,10 +59,14 @@
   margin-top:-100dvh;
 }
 
+/* Etwas hoeher als der Viewport: So liegt zwischen zwei Textbloecken echte
+   Leere und es stehen nie zwei Kapitel gleichzeitig mitten im Bild. */
 .film__kapitel{
-  min-height:100dvh;
+  min-height:125dvh;
   display:flex;
   align-items:center;
+  /* Abstand zum klebenden Kopfbalken, damit nie Text darunter rutscht */
+  padding:120px 0;
 }
 
 .film__kapitel-inhalt{
@@ -72,26 +76,31 @@
   width:100%;
 }
 
-.film__kapitel-text{max-width:34ch}
+/* Der Textblock bleibt bewusst schmal und niedrig: Er darf nur einen Teil
+   der Buehne belegen, sonst stehen beim Uebergang zwei Kapitel gleichzeitig
+   im Bild und die Seite wirkt vermischt. */
+.film__kapitel-text{max-width:30ch}
 
 .film__kapitel h2,
 .film__kapitel h1{
   color:#fdfbf7;
-  font-size:var(--t-hero);
-  max-width:14ch;
+  font-size:clamp(1.875rem,4vw,3rem);
+  line-height:1.05;
+  max-width:16ch;
 }
 
 .film__kapitel p{
-  margin-top:24px;
+  margin-top:20px;
+  font-size:1rem;
   color:rgba(247,243,236,.84);
-  max-width:46ch;
+  max-width:38ch;
 }
 
 /* Belege als Mono-Zeile, keine Pillen auf dem Foto (DESIGN.md) */
 .film__belege{
-  margin:32px 0 0;padding:0;
+  margin:24px 0 0;padding:0;
   list-style:none;
-  display:flex;flex-wrap:wrap;gap:24px;
+  display:flex;flex-wrap:wrap;gap:8px 20px;
   font-family:var(--mono);
   font-size:var(--t-meta);
   letter-spacing:.14em;
@@ -100,7 +109,7 @@
 }
 
 .film__abbinder{
-  margin-top:40px;
+  margin-top:32px;
   display:flex;flex-wrap:wrap;gap:16px;
 }
 

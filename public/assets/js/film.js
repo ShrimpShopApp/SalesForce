@@ -35,8 +35,28 @@
       : video.getAttribute("data-quelle-breit");
     if (!quelle) { return; }
 
-    video.src = quelle;
-    video.load();
+    /* Als Blob laden statt direkt zu verlinken.
+       Ein per <video src="datei.mp4"> geladenes Video ist nur springbar, wenn
+       der Server HTTP-Range beantwortet. Ein Blob ist es immer, und das
+       Springen kostet danach keinen Netzwerkzugriff mehr. Klappt der Abruf
+       nicht, bleibt das Standbild stehen: Die Seite bleibt vollstaendig
+       lesbar, sie bewegt sich nur nicht. */
+    var objektUrl = null;
+    fetch(quelle)
+      .then(function (a) {
+        if (!a.ok) { throw new Error("Film nicht ladbar: " + a.status); }
+        return a.blob();
+      })
+      .then(function (blob) {
+        objektUrl = URL.createObjectURL(blob);
+        video.src = objektUrl;
+        video.load();
+      })
+      .catch(function () { /* Standbild traegt */ });
+
+    window.addEventListener("pagehide", function () {
+      if (objektUrl) { URL.revokeObjectURL(objektUrl); }
+    });
 
     var dauer = 0;
     var gesetzt = -1;

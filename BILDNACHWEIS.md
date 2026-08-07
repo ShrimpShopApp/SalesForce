@@ -19,7 +19,7 @@ direkt vom Unsplash-CDN (Schritt "Fotos laden").
 | foto-fassade-abend.webp | Beleuchtete Restaurantfassade am Abend | photo-1726873800099-53f5496281e0 |
 | foto-interieur.webp | Gastraum mit warmem Lampenlicht | photo-1552960226-639240203497 |
 
-## KI-erzeugte Aufnahmen (black-tiger.html)
+## KI-erzeugte Aufnahmen (Scroll-Film auf der Startseite)
 
 Diese Dateien liegen als Binaerdatei im Repo, nicht auf Unsplash. Erzeugt am
 07.08.2026 mit Higgsfield (Bilder: Nano Banana Pro, Film: FLUX 3 Video), Motiv
@@ -27,13 +27,17 @@ und Bildregie von uns. Keine Fremdrechte, keine Namensnennung noetig.
 
 | Datei | Motiv |
 |---|---|
-| video/bt-film.mp4 | Eisblock schmilzt von der Crevette weg, 15 s, 1600 px |
+| video/bt-film.mp4 | Eisblock schmilzt von der Crevette weg, 6 s, 1600 px |
 | video/bt-film-mobil.mp4 | dasselbe, leichtere Fassung fuer schmale Viewports |
 | img/bt-film-poster.jpg | erstes Vollbild des Films (Standbild) |
 | img/bt-film-poster-mobil.jpg | erstes Vollbild der Mobil-Fassung |
-| img/bt-eis.jpg | einzeln gefrostete Crevetten mit Reif |
-| img/bt-bio.jpg | einzelne rohe Crevette auf dunklem Schiefer |
-| img/bt-og.jpg | Schlussbild des Films als Teilen-Vorschau |
+| img/bt-eis.jpg | einzeln gefrostete Crevetten mit Reif (derzeit ungenutzt) |
+| img/bt-bio.jpg | einzelne rohe Crevette auf dunklem Schiefer (derzeit ungenutzt) |
+| img/bt-og.jpg | Standbild des Films als Teilen-Vorschau (og:image) |
+
+Merke fuer kuenftige Filme: Ein Storyboard-Bild NICHT als Bildreferenz an das
+Videomodell geben. Es filmt dann das Raster ab, statt den Look zu uebernehmen.
+Look ueber den Prompt beschreiben, Referenz weglassen.
 
 Logo: Eigentum der Swiss Prime Taste AG.
 demo-vorschau.webp: eigener Screenshot der Demo-Seite.
