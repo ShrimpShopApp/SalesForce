@@ -286,6 +286,81 @@ p{margin:0;max-width:64ch}
 }
 .d-sek--dunkel .d-hinweis{color:rgba(250,246,239,.55)}
 
+/* ------------------------------------------------------------------ Film */
+/* Scroll-Film im Demo-System. Technik teilt sich die Seite mit spoti.ch
+   (assets/js/film.js, ueber data-Attribute angebunden), die Anmutung nicht:
+   Nacht, Messing, Fraunces statt Schwarz und Gold. */
+.d-film{position:relative;background:var(--nacht);color:var(--papier)}
+
+.d-film__buehne{
+  position:sticky;top:0;height:100dvh;overflow:hidden;background:var(--nacht);
+}
+.d-film__standbild,
+.d-film__video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+}
+.d-film__standbild{z-index:0}
+.d-film__video{z-index:1}
+
+/* Einfarbiger Nacht-Schleier, gleiche Machart wie .d-hero__schleier */
+.d-film__schleier{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(to top,rgba(20,39,43,.88) 0,rgba(20,39,43,.30) 46%,rgba(20,39,43,.18) 100%),
+    linear-gradient(96deg,rgba(20,39,43,.70) 0,rgba(20,39,43,.28) 42%,rgba(20,39,43,0) 74%);
+}
+
+.d-film__fortschritt{
+  position:absolute;left:0;bottom:0;z-index:3;height:2px;width:100%;
+  background:rgba(250,246,239,.16);
+}
+.d-film__fortschritt span{
+  display:block;height:100%;width:100%;
+  background:var(--messing);transform:scaleX(0);transform-origin:left center;
+}
+
+.d-film__kapitel-liste{position:relative;z-index:4;margin-top:-100dvh}
+
+/* Etwas hoeher als der Viewport, damit nie zwei Kapitel gleichzeitig
+   mitten im Bild stehen. */
+.d-film__kapitel{min-height:125dvh;display:flex;align-items:center;padding:120px 0}
+.d-film__kapitel-inhalt{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+.d-film__text{max-width:30ch}
+.d-film__kapitel h1,
+.d-film__kapitel h2{color:var(--papier);max-width:16ch}
+.d-film__kapitel h2{font-size:clamp(1.75rem,4vw,2.75rem)}
+.d-film__kapitel p{margin-top:20px;color:rgba(250,246,239,.86);max-width:38ch}
+.d-film__kapitel .d-zier{background:var(--messing-hell)}
+
+/* Hochformat: Ein 16:9-Film in bildschirmhoher Buehne wuerde per `cover`
+   links und rechts fast dreiviertel wegschneiden. Also flache Buehne,
+   `contain` (der Film hat selbst dunklen Grund, die Raender fallen nicht
+   auf) und Text UNTER dem Bild. Breakpoint identisch zu film.js. */
+@media(max-width:860px){
+  .d-film__buehne{height:46dvh;z-index:5}
+  .d-film__standbild,
+  .d-film__video{object-fit:contain}
+  .d-film__kapitel-liste{margin-top:0;z-index:0}
+  .d-film__kapitel{min-height:56dvh;padding:32px 0}
+  .d-film__schleier{
+    background:linear-gradient(to bottom,
+      rgba(20,39,43,.30) 0,rgba(20,39,43,0) 40%,rgba(20,39,43,.55) 100%);
+  }
+  .d-film__text,
+  .d-film__kapitel h1,
+  .d-film__kapitel h2,
+  .d-film__kapitel p{max-width:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .d-film__buehne{position:relative;height:56dvh}
+  .d-film__kapitel-liste{margin-top:0}
+  .d-film__kapitel{min-height:auto;padding:56px 0}
+  .d-film__video{display:none}
+  .d-film__fortschritt{display:none}
+}
+
 /* -------------------------------------------------------------- Responsiv */
 @media(max-width:1024px){
   .d-reihe{grid-template-columns:1fr;gap:32px}

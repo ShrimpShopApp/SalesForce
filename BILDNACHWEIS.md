@@ -35,6 +35,16 @@ und Bildregie von uns. Keine Fremdrechte, keine Namensnennung noetig.
 | img/bt-bio.jpg | einzelne rohe Crevette auf dunklem Schiefer (derzeit ungenutzt) |
 | img/bt-og.jpg | Standbild des Films als Teilen-Vorschau (og:image) |
 
+Und fuer den Scroll-Film der Demo (`demo/index.html`), erzeugt gleich, aber in
+der Demo-Anmutung (Nacht, Messing, Papier) statt in der SPT-CI:
+
+| Datei | Motiv |
+|---|---|
+| video/d-film.mp4 | Fahrt entlang der gedeckten Terrassentafel, Abend kippt zu Kerzenlicht, 10 s, 1600 px |
+| video/d-film-mobil.mp4 | dasselbe, leichtere Fassung fuer schmale Viewports |
+| img/d-film-poster.jpg | erstes Vollbild des Films (Standbild) |
+| img/d-film-poster-mobil.jpg | erstes Vollbild der Mobil-Fassung |
+
 Merke fuer kuenftige Filme: Ein Storyboard-Bild NICHT als Bildreferenz an das
 Videomodell geben. Es filmt dann das Raster ab, statt den Look zu uebernehmen.
 Look ueber den Prompt beschreiben, Referenz weglassen.

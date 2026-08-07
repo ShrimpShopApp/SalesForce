@@ -32,22 +32,69 @@
 </header>
 
 <!-- =============================================================== HERO -->
-<section class="d-hero">
-  <div class="d-foto d-hero__bild">
-    <img src="../assets/img/foto-hero-see.webp" alt="Gartenterrasse mit Tischen direkt am See" width="1568" height="704">
+<!-- Der Scroll steuert die Abspielzeit des Films. Ohne JS und bei reduzierter
+     Bewegung traegt das Standbild, der Inhalt bleibt vollstaendig lesbar. -->
+<section class="d-film" data-film aria-label="Ein Abend auf der Terrasse">
+
+  <div class="d-film__buehne">
+    <img class="d-film__standbild" src="../assets/img/d-film-poster.jpg" alt="" width="1600" height="900">
+    <video class="d-film__video" data-film-video
+           poster="../assets/img/d-film-poster.jpg"
+           data-quelle-breit="../assets/video/d-film.mp4"
+           data-quelle-schmal="../assets/video/d-film-mobil.mp4"
+           muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="d-film__schleier"></div>
+    <div class="d-film__fortschritt" data-film-fortschritt aria-hidden="true"><span></span></div>
   </div>
-  <div class="d-hero__schleier"></div>
-  <div class="d-hero__inner">
-    <span class="d-label" style="color:var(--messing-hell)">Musterhausen am See</span>
-    <h1>Küche am See.<br><em>Seit 1974.</em></h1>
-    <p class="d-hero__lead">
-      Ein Haus mit Terrasse, ein Küchenteam mit Handschrift und ein See, der jeden Abend
-      anders aussieht. Bei uns kommt auf den Teller, was der Markt hergibt.
-    </p>
-    <div class="d-btn-reihe">
-      <a class="d-btn d-btn--voll" href="speisekarte.html">Zur Speisekarte</a>
-      <a class="d-btn d-btn--leer" href="kontakt.html">Tisch reservieren</a>
-    </div>
+
+  <div class="d-film__kapitel-liste">
+
+    <article class="d-film__kapitel">
+      <div class="d-film__kapitel-inhalt">
+        <div class="d-film__text">
+          <span class="d-label" style="color:var(--messing-hell)">Musterhausen am See</span>
+          <h1>Küche am See.<br><em>Seit 1974.</em></h1>
+          <p>
+            Ein Haus mit Terrasse, ein Küchenteam mit Handschrift und ein See, der jeden
+            Abend anders aussieht. Bei uns kommt auf den Teller, was der Markt hergibt.
+          </p>
+          <div class="d-btn-reihe">
+            <a class="d-btn d-btn--voll" href="speisekarte.html">Zur Speisekarte</a>
+            <a class="d-btn d-btn--leer" href="kontakt.html">Tisch reservieren</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="d-film__kapitel">
+      <div class="d-film__kapitel-inhalt">
+        <div class="d-film__text">
+          <div class="d-zier"></div>
+          <h2>Vierzig Plätze, ein Wasser.</h2>
+          <p>
+            Die Terrasse öffnet am ersten warmen Tag und schliesst, wenn es niemanden
+            mehr draussen hält. Dazwischen decken wir jeden Abend neu ein.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="d-film__kapitel">
+      <div class="d-film__kapitel-inhalt">
+        <div class="d-film__text">
+          <div class="d-zier"></div>
+          <h2>Wenn die Kerzen brennen, wird es still.</h2>
+          <p>
+            Dann steht das Essen auf dem Tisch, und die Küche hat ihren Teil getan.
+            Reservieren lohnt sich, vor allem am Wochenende.
+          </p>
+          <div class="d-btn-reihe">
+            <a class="d-btn d-btn--voll" href="kontakt.html">Tisch reservieren</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -188,5 +235,6 @@
   </div>
 </footer>
 
+<script src="../assets/js/film.js"></script>
 </body>
 </html>
