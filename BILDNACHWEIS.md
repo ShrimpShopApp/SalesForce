@@ -15,6 +15,9 @@ direkt vom Unsplash-CDN (Schritt "Fotos laden").
 | foto-terrasse.webp | Terrassentisch mit Seeblick | photo-1760546070850-a8a3531bb857 |
 | foto-rohware.webp | Rohe Crevetten auf Eis | photo-1756364084889-9a8d9ece6112 |
 | foto-hero-grill.webp | Crevetten auf dem Grill, gluehende Kohlen | photo-1749639240076-0e4fe6289fde |
+| foto-tafel-kerzen.webp | Gedeckter Tisch, Kerzen und Wein am Abend | photo-1580929753530-ef52238116c5 |
+| foto-fassade-abend.webp | Beleuchtete Restaurantfassade am Abend | photo-1726873800099-53f5496281e0 |
+| foto-interieur.webp | Gastraum mit warmem Lampenlicht | photo-1552960226-639240203497 |
 
 Logo: Eigentum der Swiss Prime Taste AG.
 demo-vorschau.webp: eigener Screenshot der Demo-Seite.
