@@ -333,12 +333,26 @@ p{margin:0;max-width:64ch}
 .d-film__kapitel p{margin-top:20px;color:rgba(250,246,239,.86);max-width:38ch}
 .d-film__kapitel .d-zier{background:var(--messing-hell)}
 
+/* Flachere Variante fuer die Unterseiten: Der Film ist dort Kopfzeile,
+   nicht die ganze Buehne. Ein Kapitel genuegt. */
+.d-film--klein .d-film__buehne{height:64dvh}
+.d-film--klein .d-film__kapitel-liste{margin-top:-64dvh}
+.d-film--klein .d-film__kapitel{min-height:64dvh;padding:80px 0}
+/* Kleinere Buehne, also kleinere Zeile: In voller Groesse braeche die
+   Ueberschrift auf fuenf Zeilen und liefe aus dem Film heraus. */
+.d-film--klein .d-film__text{max-width:40ch}
+.d-film--klein h1{font-size:clamp(1.875rem,4.2vw,3rem);max-width:20ch}
+.d-film--klein .d-film__kapitel p{max-width:44ch}
+
 /* Hochformat: Ein 16:9-Film in bildschirmhoher Buehne wuerde per `cover`
    links und rechts fast dreiviertel wegschneiden. Also flache Buehne,
    `contain` (der Film hat selbst dunklen Grund, die Raender fallen nicht
    auf) und Text UNTER dem Bild. Breakpoint identisch zu film.js. */
 @media(max-width:860px){
-  .d-film__buehne{height:46dvh;z-index:5}
+  .d-film__buehne,
+  .d-film--klein .d-film__buehne{height:46dvh;z-index:5}
+  .d-film--klein .d-film__kapitel-liste{margin-top:0}
+  .d-film--klein .d-film__kapitel{min-height:auto;padding:40px 0}
   .d-film__standbild,
   .d-film__video{object-fit:contain}
   .d-film__kapitel-liste{margin-top:0;z-index:0}

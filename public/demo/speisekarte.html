@@ -31,17 +31,33 @@
   </div>
 </header>
 
-<section class="d-hero d-hero--klein">
-  <div class="d-foto d-hero__bild">
-    <img src="../assets/img/foto-tafel-kerzen.webp" alt="Gedeckter Tisch mit Kerzen und Weinglas am Abend" width="1568" height="624">
+<!-- Scroll-Film als Kopf. Ohne JS und bei reduzierter Bewegung traegt das
+     Standbild, der Text bleibt vollstaendig lesbar. -->
+<section class="d-film d-film--klein" data-film aria-label="Crevetten vom Grill">
+
+  <div class="d-film__buehne">
+    <img class="d-film__standbild" src="../assets/img/s-film-poster.jpg" alt="" width="1600" height="900">
+    <video class="d-film__video" data-film-video
+           poster="../assets/img/s-film-poster.jpg"
+           data-quelle-breit="../assets/video/s-film.mp4"
+           data-quelle-schmal="../assets/video/s-film-mobil.mp4"
+           muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="d-film__schleier"></div>
+    <div class="d-film__fortschritt" data-film-fortschritt aria-hidden="true"><span></span></div>
   </div>
-  <div class="d-hero__schleier"></div>
-  <div class="d-hero__inner">
-    <span class="d-label" style="color:var(--messing-hell)">Karte</span>
-    <h1>Was diese Woche<br><em>auf den Tisch kommt</em></h1>
-    <p class="d-hero__lead">
-      Die Karte wechselt mit dem Markt. Was hier steht, gilt bis Sonntag.
-    </p>
+
+  <div class="d-film__kapitel-liste">
+    <article class="d-film__kapitel">
+      <div class="d-film__kapitel-inhalt">
+        <div class="d-film__text">
+          <span class="d-label" style="color:var(--messing-hell)">Karte</span>
+          <h1>Was diese Woche<br><em>auf den Tisch kommt</em></h1>
+          <p>
+            Die Karte wechselt mit dem Markt. Was hier steht, gilt bis Sonntag.
+          </p>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -200,5 +216,6 @@
   </div>
 </footer>
 
+<script src="../assets/js/film.js"></script>
 </body>
 </html>
