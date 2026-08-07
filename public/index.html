@@ -16,7 +16,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Source+Sans+3:wght@200;400;800&amp;family=Space+Grotesk:wght@700&amp;display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/film.css">
 </head>
 <body>
 
@@ -81,75 +80,6 @@
     <div class="trust__punkt"><b>6× BIO</b><span>Zertifikat liegt der Lieferung bei</span></div>
   </div>
 </div>
-
-<!-- ================================================================ FILM -->
-<!-- Der Scroll steuert die Abspielzeit. Ohne JS und bei reduzierter
-     Bewegung traegt das Standbild, die Kapitel bleiben lesbar. -->
-<section class="film" id="film" data-film aria-label="Warum die Glasur auf die Rechnung gehört">
-
-  <div class="film__buehne">
-    <img class="film__standbild" src="assets/img/bt-film-poster.jpg" alt="" width="1600" height="906">
-    <video class="film__video" data-film-video
-           poster="assets/img/bt-film-poster.jpg"
-           data-quelle-breit="assets/video/bt-film.mp4"
-           data-quelle-schmal="assets/video/bt-film-mobil.mp4"
-           muted playsinline preload="auto" aria-hidden="true"></video>
-    <div class="film__schleier"></div>
-    <div class="film__fortschritt" data-film-fortschritt aria-hidden="true"><span></span></div>
-  </div>
-
-  <div class="film__kapitel-liste">
-
-    <article class="film__kapitel">
-      <div class="film__kapitel-inhalt">
-        <div class="film__kapitel-text">
-          <span class="film__nr">01</span>
-          <h2>Jede Crevette kommt im Eis.</h2>
-          <p>Zwanzig Prozent Glasur sind im Handel normal. Die Frage ist nicht,
-             ob Eis dabei ist – die Frage ist, wer es mitzählt.</p>
-          <ul class="film__belege">
-            <li>20 % Glasur</li>
-            <li>Einzeln gefrostet</li>
-            <li>Roh</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="film__kapitel">
-      <div class="film__kapitel-inhalt">
-        <div class="film__kapitel-text">
-          <span class="film__nr">02</span>
-          <h2>Die Zahl gilt aufs Netto.</h2>
-          <p>Bei True Count bezieht sich die Stückzahl auf das Nettogewicht.
-             Sie zählen den Beutel nach und bekommen, was draufsteht. Bei Frozen
-             Count zählt der Lieferant die Glasur mit, und der Teller wird
-             teurer, als die Offerte aussieht.</p>
-          <ul class="film__belege">
-            <li>True Count</li>
-            <li>Jeder Artikel im Sortiment</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="film__kapitel">
-      <div class="film__kapitel-inhalt">
-        <div class="film__kapitel-text">
-          <span class="film__nr">03</span>
-          <h2>Rückverfolgbar bis zum Muttertier.</h2>
-          <p>Produzent und Importeur in einem, eigene Qualitätskontrolle vom
-             Teich bis in Ihre Küche. Neun Artikel, sechs davon Bio, ab Lager
-             Aadorf.</p>
-          <div class="film__abbinder">
-            <a class="btn btn--primaer" href="#sortiment">Sortiment &amp; Preise</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
 
 <!-- ============================================================== ABLAUF -->
 <section class="sek" id="angebot">
@@ -348,6 +278,5 @@
 
 <script src="daten/produkte.js"></script>
 <script src="assets/js/seite.js"></script>
-<script src="assets/js/film.js"></script>
 </body>
 </html>
