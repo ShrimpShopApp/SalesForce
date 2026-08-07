@@ -62,6 +62,14 @@ Struktur: `.wrap` · `.sek` `--creme/--dunkel/--deal` · `.sek__kopf` ·
 Gold mit Dunkeltext, Press `scale(.97)`) · `.label`/`--hell` · `.chip`/`--bio` ·
 `.zeig` (Block-Reveal, IntersectionObserver + 1.2s-Sicherheitsnetz).
 
+Scroll-Film (`assets/css/film.css` + `assets/js/film.js`, `.film*`, nur
+`black-tiger.html`): Die Scrollposition steuert `video.currentTime`, kein
+Autoplay. `.film__buehne` klebt, `.film__kapitel-liste` laeuft darueber.
+Nutzt ausschliesslich Variablen aus `style.css`; der `.film__schleier` ist ein
+einfarbig schwarzes Foto-Overlay. Bei `prefers-reduced-motion` wird kein Video
+geladen, das Standbild traegt und die Kapitel sind normale Abschnitte.
+Video liegt als Binaerdatei unter `assets/video/` (nicht als `.b64`).
+
 Demo (`assets/css/demo.css`, `.d-*`): eigenes System (Nacht/Messing/Papier,
 Fraunces) — bleibt auch nach dem CI-Wechsel eigenstaendig; sie muss wie die
 Website eines Kunden aussehen, nicht wie shrimpshop.

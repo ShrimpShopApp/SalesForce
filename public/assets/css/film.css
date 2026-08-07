@@ -1,0 +1,146 @@
+/* ==========================================================================
+   spoti.ch — Komponente "Scroll-Film" (nur black-tiger.html)
+   Der Scroll steuert die Abspielzeit eines Videos, darueber liegen die
+   Kapiteltexte. Farben, Schrift und Bewegung kommen aus style.css.
+   Regeln: DESIGN.md.
+   ========================================================================== */
+
+.film{
+  position:relative;
+  background:var(--tief);
+  color:var(--creme);
+}
+
+/* Buehne bleibt stehen, waehrend die Kapitel darueber wandern */
+.film__buehne{
+  position:sticky;
+  top:0;
+  height:100dvh;
+  overflow:hidden;
+  background:var(--tief);
+}
+
+.film__video,
+.film__standbild{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
+}
+
+/* Standbild liegt unter dem Video und traegt, bis das Video bereit ist */
+.film__standbild{z-index:0}
+.film__video{z-index:1}
+
+/* Einfarbig schwarzes Foto-Overlay (DESIGN.md: einzige erlaubte Verlaufsart) */
+.film__schleier{
+  position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(to bottom,rgba(2,2,2,.72) 0,rgba(2,2,2,.22) 26%,rgba(2,2,2,.30) 70%,rgba(2,2,2,.92) 100%),
+    linear-gradient(96deg,rgba(2,2,2,.88) 0,rgba(2,2,2,.62) 42%,rgba(2,2,2,.20) 100%);
+}
+
+/* Fortschritt: eine Haarlinie, kein Balken */
+.film__fortschritt{
+  position:absolute;left:0;bottom:0;z-index:3;
+  height:2px;width:100%;
+  background:rgba(247,243,236,.14);
+}
+.film__fortschritt span{
+  display:block;height:100%;width:0;
+  background:var(--koralle);
+  transform-origin:left center;
+}
+
+/* Kapitel laufen ueber die stehende Buehne */
+.film__kapitel-liste{
+  position:relative;z-index:4;
+  margin-top:-100dvh;
+}
+
+.film__kapitel{
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+}
+
+.film__kapitel-inhalt{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 24px;
+  width:100%;
+}
+
+.film__kapitel-text{max-width:34ch}
+
+.film__kapitel h2,
+.film__kapitel h1{
+  color:#fdfbf7;
+  font-size:var(--t-hero);
+  max-width:14ch;
+}
+
+.film__kapitel p{
+  margin-top:24px;
+  color:rgba(247,243,236,.84);
+  max-width:46ch;
+}
+
+/* Belege als Mono-Zeile, keine Pillen auf dem Foto (DESIGN.md) */
+.film__belege{
+  margin:32px 0 0;padding:0;
+  list-style:none;
+  display:flex;flex-wrap:wrap;gap:24px;
+  font-family:var(--mono);
+  font-size:var(--t-meta);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--koralle-hell);
+}
+
+.film__abbinder{
+  margin-top:40px;
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+
+/* Kapitelnummer als stille Randnotiz */
+.film__nr{
+  display:block;
+  font-family:var(--mono);
+  font-size:var(--t-meta);
+  letter-spacing:.22em;
+  color:rgba(247,243,236,.45);
+  margin-bottom:16px;
+}
+
+/* Textblock neben Bild. Bewusst ungleich geteilt, kein 50/50-Kasten. */
+.bt-paar{
+  display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,6fr);
+  gap:64px;
+  align-items:center;
+}
+.bt-paar__bild{margin:0}
+.bt-paar__bild img{width:100%;height:auto}
+
+/* ------------------------------------------------------------- Responsiv */
+@media(max-width:1024px){
+  .bt-paar{grid-template-columns:1fr;gap:48px}
+}
+@media(max-width:768px){
+  .film__kapitel h2,
+  .film__kapitel h1{font-size:clamp(2rem,9vw,2.75rem)}
+  .film__kapitel-text{max-width:none}
+  .film__belege{gap:16px}
+}
+
+/* --------------------------------------------------- Reduzierte Bewegung */
+/* Kein Scrubbing: das Standbild traegt, die Kapitel bleiben normale
+   Abschnitte. Der Inhalt ist vollstaendig lesbar. */
+@media(prefers-reduced-motion:reduce){
+  .film__buehne{position:relative;height:60dvh}
+  .film__kapitel-liste{margin-top:0}
+  .film__kapitel{min-height:auto;padding:64px 0}
+  .film__video{display:none}
+  .film__fortschritt{display:none}
+}
