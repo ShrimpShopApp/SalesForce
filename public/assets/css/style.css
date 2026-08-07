@@ -11,16 +11,22 @@
   --tief-3:#1b1b1b;
   --koralle:#d7b55d;      /* CI-Gold (shrimpshop.ch Button) */
   --koralle-hell:#dfc876; /* CI-Gold hell */
-  --akzent-tinte:#7a6023; /* Gold, abgedunkelt fuer Text auf hellem Grund */
+  --akzent-tinte:#dfc876; /* Gold fuer Text; die Seite ist durchgehend dunkel */
   --creme:#f7f3ec;
   --creme-2:#ece5d9;
-  --text:#22333b;
-  --text-hell:#5d7079;
+
+  /* Die Seite laeuft durchgehend auf Schwarz (Chris, 08.08.2026). Sie kippte
+     vorher nach dem Film ins Beige und unten ins Gold.
+     Diese vier Token sind die Schnittstelle: Jede Komponente, die frueher auf
+     Creme stand, holt ihre Farbe hier. Deshalb genuegt es, sie umzubelegen,
+     statt zwanzig Bausteine einzeln anzufassen. */
+  --text:#ece7db;                    /* war Schiefer auf hell */
+  --text-hell:#9a9488;               /* war Graublau auf hell */
   --linie:rgba(255,255,255,.14);
-  --linie-dunkel:rgba(2,2,2,.16);
+  --linie-dunkel:rgba(247,243,236,.16); /* war Schwarz auf hell */
   /* semantisch, keine Palette: */
-  --bio:#2e9e63;      /* CI-Organic-Gruen, abgedunkelt fuer hellen Grund */
-  --bio-hell:#60e098; /* CI-Organic-Gruen (shrimpshop.ch) auf dunklem Grund */
+  --bio:#60e098;      /* CI-Organic-Gruen auf dunklem Grund */
+  --bio-hell:#60e098;
   --gold:#b5964e;     /* Hinweisrand */
 
   /* Schrift (DESIGN.md §2) */
@@ -54,7 +60,7 @@ body{
   font-weight:400;
   line-height:1.65;
   color:var(--text);
-  background:var(--creme);
+  background:var(--tief);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -238,7 +244,9 @@ p{margin:0;max-width:68ch}
 
 /* ------------------------------------------------------------- Sektionen */
 .sek{padding:96px 0}
-.sek--creme{background:var(--creme-2)}
+/* Klassenname aus Kompatibilitaet behalten: markiert jetzt die leicht
+   abgesetzte dunkle Flaeche, nicht mehr Creme. */
+.sek--creme{background:var(--tief-2)}
 .sek--dunkel{background:var(--tief);color:var(--creme)}
 .sek--dunkel h2{color:#fdfbf7}
 .sek--dunkel p{color:rgba(247,243,236,.8)}
@@ -347,7 +355,7 @@ p{margin:0;max-width:68ch}
   letter-spacing:.02em;
 }
 @media(hover:hover) and (pointer:fine){
-  .liste tbody tr:not(.liste__gruppe):hover{background:rgba(2,2,2,.045)}
+  .liste tbody tr:not(.liste__gruppe):hover{background:rgba(247,243,236,.045)}
 }
 
 .chip{
@@ -404,26 +412,33 @@ p{margin:0;max-width:68ch}
 }
 
 /* ------------------------------------------------------------------ Deal */
-.sek--deal{background:var(--koralle);color:#0a0a0a}
+/* Frueher ein bildschirmbreites Goldfeld. Das riss die Seite auf und wirkte
+   billig. Jetzt dunkler Grund wie der Rest, Gold nur als Kante und Akzent:
+   Der Abschnitt bleibt der Hoehepunkt, ohne die Flaeche. */
+.sek--deal{
+  background:var(--tief-2);color:var(--text);
+  border-top:2px solid var(--koralle);
+}
 .deal{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:start}
-.deal .label{color:rgba(2,2,2,.7)}
-.deal h2{color:#0a0a0a;max-width:14ch}
-.deal p{margin-top:16px;color:rgba(2,2,2,.85)}
-.deal__liste{list-style:none;margin:0;padding:0;border-top:1px solid rgba(2,2,2,.4)}
+.deal .label{color:var(--koralle-hell)}
+.deal h2{color:#fdfbf7;max-width:14ch}
+.deal p{margin-top:16px;color:rgba(247,243,236,.85)}
+.deal__liste{list-style:none;margin:0;padding:0;border-top:1px solid var(--linie)}
 .deal__liste li{
-  padding:12px 0;border-bottom:1px solid rgba(2,2,2,.4);
+  padding:12px 0;border-bottom:1px solid var(--linie);
   display:flex;gap:16px;align-items:baseline;font-size:.9375rem;
+  color:rgba(247,243,236,.9);
 }
 .deal__liste li::before{
-  content:"→";font-family:var(--mono);flex:0 0 auto;
+  content:"→";font-family:var(--mono);flex:0 0 auto;color:var(--koralle);
 }
 .konditionen{
   margin-top:64px;
   display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
 }
-.sek--deal .konditionen > div{border-top:1px solid rgba(2,2,2,.4);padding-top:24px}
-.sek--deal .konditionen h3{color:#0a0a0a}
-.sek--deal .konditionen p{font-size:.9375rem;color:rgba(2,2,2,.8);margin-top:8px}
+.sek--deal .konditionen > div{border-top:1px solid var(--linie);padding-top:24px}
+.sek--deal .konditionen h3{color:#fdfbf7}
+.sek--deal .konditionen p{font-size:.9375rem;color:rgba(247,243,236,.75);margin-top:8px}
 
 /* ---------------------------------------------------------- Beispielband */
 .demo-cta{

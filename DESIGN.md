@@ -11,9 +11,17 @@ nie rohe Hex-Werte in Komponenten:
 - Akzent CI-Gold `--koralle: #d7b55d` / `--koralle-hell: #dfc876`
   (Variablennamen aus Kompatibilitaet behalten — Werte sind Gold)
 - Lesbares Gold fuer Text auf hellem Grund `--akzent-tinte: #7a6023`
-- Papier `--creme/-2`, Tinte `--text/--text-hell`, Linien `--linie/--linie-dunkel`
-- BIO: CI-Gruen `--bio: #2e9e63` (hell abgedunkelt) / `--bio-hell: #60e098`
-  (Original, nur auf dunklem Grund) · Hinweisrand `--gold: #b5964e`
+- **Die Seite laeuft durchgehend auf Schwarz** (Chris, 08.08.2026). Vorher kippte
+  sie nach dem Film ins Beige und unten in ein bildschirmbreites Goldfeld. Kein
+  heller Abschnitt mehr, auch nicht im Impressum. `.sek--creme` heisst weiterhin
+  so, meint aber die leicht abgesetzte dunkle Flaeche `--tief-2`. Der Deal-Block
+  ist dunkel mit goldener Oberkante statt goldener Flaeche.
+- Vier Token sind die Schnittstelle zum dunklen Grund; wer eine Komponente baut,
+  nimmt sie und nichts anderes: Tinte `--text: #ece7db` / `--text-hell: #9a9488`,
+  Linien `--linie` / `--linie-dunkel`. `--creme/-2` bleibt als Textfarbe.
+- Gold als Text: `--akzent-tinte: #dfc876` (frueher abgedunkelt fuer hellen Grund)
+- BIO: `--bio` und `--bio-hell` sind beide `#60e098`, das Original von
+  shrimpshop.ch · Hinweisrand `--gold: #b5964e`
 
 **Goldflaechen und Gold-Buttons tragen dunkle Schrift (#020202), nie weiss —
 exakt wie im Shop.** Gold-TEXT auf hellem Grund nutzt `--akzent-tinte`.
