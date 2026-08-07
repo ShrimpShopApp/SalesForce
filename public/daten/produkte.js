@@ -35,7 +35,7 @@ window.SPOTI_DATEN = {
 
   "konditionen": {
     "eigentum": "Domain und Website gehören Ihnen. Ausnahmslos.",
-    "hosting": "Hosting im ersten Jahr inklusive. Danach CHF 29 im Monat – aber nur, wenn Sie bei uns hosten möchten.",
+    "hosting": "Hosting kostet CHF 29 im Monat – aber nur, wenn Sie bei uns hosten möchten.",
     "bestehend": "Die meisten Betriebe bleiben bei ihrem Anbieter. Dann übernehmen wir einfach die bestehende Domain und den Webspace.",
     "glasur": "Alle Artikel roh, einzeln gefrostet (IQF), mit 20 % Glasur."
   },

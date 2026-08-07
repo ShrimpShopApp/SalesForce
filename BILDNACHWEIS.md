@@ -50,6 +50,9 @@ Videomodell geben. Es filmt dann das Raster ab, statt den Look zu uebernehmen.
 Look ueber den Prompt beschreiben, Referenz weglassen.
 
 Logo: Eigentum der Swiss Prime Taste AG.
-demo-vorschau.webp: eigener Screenshot der Demo-Seite.
+demo-vorschau.jpg: eigener Screenshot der Demo-Startseite, aufgenommen am
+07.08.2026 nach dem Umbau auf den Scroll-Film. Liegt als gewoehnliche
+Binaerdatei im Repo, nicht mehr als `.b64`. Nach jedem groesseren Umbau der
+Demo neu aufnehmen, sonst zeigt die Startseite einen veralteten Auftritt.
 Eigene Produktfotos von SPT koennen jedes Unsplash-Bild ersetzen —
 URL im Workflow-Schritt austauschen oder Datei direkt einchecken.

@@ -271,9 +271,12 @@ p{margin:0;max-width:68ch}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;opacity:.92;
 }
+/* Der gesamte Text der Empfehlung sitzt in der unteren Haelfte. Der Schleier
+   war dort zu duenn, das Foto hat unter der Schrift geflimmert. */
 .emp__haupt-schleier{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(2,2,2,.92) 0,rgba(2,2,2,.35) 55%,rgba(2,2,2,.15) 100%);
+  background:linear-gradient(to top,
+    rgba(2,2,2,.96) 0,rgba(2,2,2,.90) 38%,rgba(2,2,2,.55) 68%,rgba(2,2,2,.22) 100%);
 }
 .emp__haupt > :not(.emp__haupt-bild):not(.emp__haupt-schleier){position:relative}
 .emp__flagge{
