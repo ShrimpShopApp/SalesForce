@@ -21,7 +21,8 @@ exakt wie im Shop.** Gold-TEXT auf hellem Grund nutzt `--akzent-tinte`.
 Verboten: Violett/Indigo in jeder Form · dritter Akzent · reines #000/#fff als
 TEXT (CI-Flaechenschwarz #020202 und Dunkeltext auf Gold sind die kodifizierten
 Ausnahmen). Erlaubte Verlaeufe: nur einfarbig schwarze Foto-Overlays
-(`.hero__schleier`, `.emp__haupt-schleier`, `.d-hero__schleier`).
+(`.hero__schleier`, `.emp__haupt-schleier`, `.d-hero__schleier`,
+`.film__schleier`, `.d-film__schleier`).
 
 ## Logo-Regel (Chris, 06.08.2026)
 
@@ -62,13 +63,16 @@ Struktur: `.wrap` · `.sek` `--creme/--dunkel/--deal` · `.sek__kopf` ·
 Gold mit Dunkeltext, Press `scale(.97)`) · `.label`/`--hell` · `.chip`/`--bio` ·
 `.zeig` (Block-Reveal, IntersectionObserver + 1.2s-Sicherheitsnetz).
 
-Scroll-Film (`assets/css/film.css` + `assets/js/film.js`, `.film*`, nur
-`black-tiger.html`): Die Scrollposition steuert `video.currentTime`, kein
-Autoplay. `.film__buehne` klebt, `.film__kapitel-liste` laeuft darueber.
-Nutzt ausschliesslich Variablen aus `style.css`; der `.film__schleier` ist ein
-einfarbig schwarzes Foto-Overlay. Bei `prefers-reduced-motion` wird kein Video
-geladen, das Standbild traegt und die Kapitel sind normale Abschnitte.
-Video liegt als Binaerdatei unter `assets/video/` (nicht als `.b64`).
+Scroll-Film: Die Scrollposition steuert `video.currentTime`, kein Autoplay.
+Die Buehne klebt (`position:sticky`), die Kapitelliste laeuft darueber.
+Ein Skript fuer beide Seiten: `assets/js/film.js`, angebunden ueber
+`data-film` / `data-film-video` / `data-film-fortschritt`, damit die Demo ihr
+eigenes Klassensystem behalten kann. Zwei Anmutungen: `.film*` in
+`assets/css/film.css` (Landingpage, Schwarz/Gold) und `.d-film*` in
+`demo.css` (Demo, Nacht/Messing). Beide Schleier sind einfarbige
+Foto-Overlays. Bei `prefers-reduced-motion` wird kein Video geladen, das
+Standbild traegt und die Kapitel sind normale Abschnitte.
+Videos liegen als Binaerdatei unter `assets/video/` (nicht als `.b64`).
 
 Demo (`assets/css/demo.css`, `.d-*`): eigenes System (Nacht/Messing/Papier,
 Fraunces) — bleibt auch nach dem CI-Wechsel eigenstaendig; sie muss wie die

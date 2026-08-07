@@ -1,5 +1,5 @@
 /* ==========================================================================
-   spoti.ch — Komponente "Scroll-Film" (nur black-tiger.html)
+   spoti.ch — Komponente "Scroll-Film" (Landingpage, `.film*`)
    Der Scroll steuert die Abspielzeit eines Videos, darueber liegen die
    Kapiteltexte. Farben, Schrift und Bewegung kommen aus style.css.
    Regeln: DESIGN.md.
@@ -47,8 +47,9 @@
   background:rgba(247,243,236,.14);
 }
 .film__fortschritt span{
-  display:block;height:100%;width:0;
+  display:block;height:100%;width:100%;
   background:var(--koralle);
+  transform:scaleX(0);
   transform-origin:left center;
 }
 
@@ -113,20 +114,7 @@
   margin-bottom:16px;
 }
 
-/* Textblock neben Bild. Bewusst ungleich geteilt, kein 50/50-Kasten. */
-.bt-paar{
-  display:grid;
-  grid-template-columns:minmax(0,5fr) minmax(0,6fr);
-  gap:64px;
-  align-items:center;
-}
-.bt-paar__bild{margin:0}
-.bt-paar__bild img{width:100%;height:auto}
-
 /* ------------------------------------------------------------- Responsiv */
-@media(max-width:1024px){
-  .bt-paar{grid-template-columns:1fr;gap:48px}
-}
 @media(max-width:768px){
   .film__kapitel h2,
   .film__kapitel h1{font-size:clamp(2rem,9vw,2.75rem)}
