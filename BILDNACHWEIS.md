@@ -44,6 +44,16 @@ der Demo-Anmutung (Nacht, Messing, Papier) statt in der SPT-CI:
 | video/d-film-mobil.mp4 | dasselbe, leichtere Fassung fuer schmale Viewports |
 | img/d-film-poster.jpg | erstes Vollbild des Films (Standbild) |
 | img/d-film-poster-mobil.jpg | erstes Vollbild der Mobil-Fassung |
+| video/s-film.mp4 | Speisekarte: Kerzenlicht auf dem Teller Crevetten, 8 s |
+| video/s-film-mobil.mp4 | dasselbe, Mobil-Fassung |
+| img/s-film-poster.jpg + -mobil.jpg | erste Vollbilder dazu |
+| video/k-film.mp4 | Kontakt: warmer Gastraum am Abend hinter der Scheibe, 8 s |
+| video/k-film-mobil.mp4 | dasselbe, Mobil-Fassung |
+| img/k-film-poster.jpg + -mobil.jpg | erste Vollbilder dazu |
+
+Zweiter Merksatz: Eine bereits benutzte Upload-Adresse NICHT wiederverwenden.
+Das CDN liefert dann das alte Objekt, und man baut unbemerkt das falsche Bild
+ein. Immer frische Adresse holen und die Dateigroesse gegenpruefen.
 
 Merke fuer kuenftige Filme: Ein Storyboard-Bild NICHT als Bildreferenz an das
 Videomodell geben. Es filmt dann das Raster ab, statt den Look zu uebernehmen.

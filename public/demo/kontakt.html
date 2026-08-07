@@ -31,18 +31,34 @@
   </div>
 </header>
 
-<section class="d-hero d-hero--klein">
-  <div class="d-foto d-hero__bild">
-    <img src="../assets/img/foto-fassade-abend.webp" alt="Warm beleuchtete Fenster einer Restaurantfassade am Abend" width="1568" height="624">
+<!-- Scroll-Film als Kopf. Ohne JS und bei reduzierter Bewegung traegt das
+     Standbild, der Text bleibt vollstaendig lesbar. -->
+<section class="d-film d-film--klein" data-film aria-label="Gastraum am Abend">
+
+  <div class="d-film__buehne">
+    <img class="d-film__standbild" src="../assets/img/k-film-poster.jpg" alt="" width="1600" height="900">
+    <video class="d-film__video" data-film-video
+           poster="../assets/img/k-film-poster.jpg"
+           data-quelle-breit="../assets/video/k-film.mp4"
+           data-quelle-schmal="../assets/video/k-film-mobil.mp4"
+           muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="d-film__schleier"></div>
+    <div class="d-film__fortschritt" data-film-fortschritt aria-hidden="true"><span></span></div>
   </div>
-  <div class="d-hero__schleier"></div>
-  <div class="d-hero__inner">
-    <span class="d-label" style="color:var(--messing-hell)">Kontakt</span>
-    <h1>Reservieren Sie<br><em>am besten telefonisch.</em></h1>
-    <p class="d-hero__lead">
-      Wir sind während der Öffnungszeiten am Telefon erreichbar. Für Gruppen ab
-      sechs Personen melden Sie sich bitte einen Tag im Voraus.
-    </p>
+
+  <div class="d-film__kapitel-liste">
+    <article class="d-film__kapitel">
+      <div class="d-film__kapitel-inhalt">
+        <div class="d-film__text">
+          <span class="d-label" style="color:var(--messing-hell)">Kontakt</span>
+          <h1>Reservieren Sie<br><em>am besten telefonisch.</em></h1>
+          <p>
+            Wir sind während der Öffnungszeiten am Telefon erreichbar. Für Gruppen ab
+            sechs Personen melden Sie sich bitte einen Tag im Voraus.
+          </p>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -123,5 +139,6 @@
   </div>
 </footer>
 
+<script src="../assets/js/film.js"></script>
 </body>
 </html>
