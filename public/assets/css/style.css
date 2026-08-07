@@ -492,11 +492,10 @@ p{margin:0;max-width:68ch}
 .zeig-reihe > .zeig:nth-child(5){--verz:360ms}
 .zeig-reihe > .zeig:nth-child(6){--verz:450ms}
 
-/* -------------------------------------------------------- Bild im Deal --- */
-/* Die linke Spalte ist kuerzer als die Liste rechts. Ohne Bild bleibt im
-   Goldfeld eine grosse tote Flaeche stehen. */
-.deal__bild{margin:40px 0 0;overflow:hidden}
-.deal__bild img{width:100%;height:auto;display:block}
+/* Die linke Deal-Spalte ist kuerzer als die Liste rechts. Kein Bild dagegen:
+   Der Abschnitt handelt von der Website, ein Produktfoto waere dort ein
+   Fremdkoerper. Stattdessen traegt die Zeile mehr Gewicht. */
+.deal p{font-size:1.25rem;line-height:1.5;max-width:30ch}
 
 /* ------------------------------------------------------ Qualitaet + Bild - */
 .qual{
@@ -507,9 +506,9 @@ p{margin:0;max-width:68ch}
 .qual__bild img{width:100%;height:auto;display:block}
 
 /* Dezenter Zoom, nur transform, nur auf Zeigergeraeten (DESIGN.md) */
-.deal__bild img,.qual__bild img{transition:transform 380ms var(--ease-out)}
+.qual__bild img{transition:transform 380ms var(--ease-out)}
 @media(hover:hover) and (pointer:fine){
-  .deal__bild:hover img,.qual__bild:hover img{transform:scale(1.03)}
+  .qual__bild:hover img{transform:scale(1.03)}
 }
 
 @media(max-width:1024px){
@@ -545,8 +544,8 @@ p{margin:0;max-width:68ch}
   html{scroll-behavior:auto}
   /* Auch die Staffelung faellt weg, sonst warten Bloecke bis zu 450ms */
   .zeig{transform:none;transition:opacity 200ms ease;--verz:0ms}
-  .deal__bild img,.qual__bild img{transition:none}
-  .deal__bild:hover img,.qual__bild:hover img{transform:none}
+  .qual__bild img{transition:none}
+  .qual__bild:hover img{transform:none}
   .btn,.tel-gross{transition:none}
   .btn:active{transform:none}
 }
