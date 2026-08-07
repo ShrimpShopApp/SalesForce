@@ -307,8 +307,8 @@ p{margin:0;max-width:64ch}
 .d-film__schleier{
   position:absolute;inset:0;z-index:2;
   background:
-    linear-gradient(to top,rgba(20,39,43,.88) 0,rgba(20,39,43,.30) 46%,rgba(20,39,43,.18) 100%),
-    linear-gradient(96deg,rgba(20,39,43,.70) 0,rgba(20,39,43,.28) 42%,rgba(20,39,43,0) 74%);
+    linear-gradient(to top,rgba(20,39,43,.70) 0,rgba(20,39,43,.16) 48%,rgba(20,39,43,.08) 100%),
+    linear-gradient(96deg,rgba(20,39,43,.60) 0,rgba(20,39,43,.20) 40%,rgba(20,39,43,0) 70%);
 }
 
 .d-film__fortschritt{
