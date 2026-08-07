@@ -481,6 +481,41 @@ p{margin:0;max-width:68ch}
   transition-delay:var(--verz,0ms)}
 .zeig.da{opacity:1;transform:none}
 
+/* ----------------------------------------------------- Gestaffelte Reveals */
+/* Kinder erscheinen nacheinander statt als ein Block. Gesetzt wird nur die
+   Verzoegerung; Dauer und Kurve bleiben die aus .zeig (380ms, --ease-out,
+   nur transform und opacity). Bei reduzierter Bewegung greift der Block
+   ganz unten und schaltet alles hart sichtbar. */
+.zeig-reihe > .zeig:nth-child(2){--verz:90ms}
+.zeig-reihe > .zeig:nth-child(3){--verz:180ms}
+.zeig-reihe > .zeig:nth-child(4){--verz:270ms}
+.zeig-reihe > .zeig:nth-child(5){--verz:360ms}
+.zeig-reihe > .zeig:nth-child(6){--verz:450ms}
+
+/* -------------------------------------------------------- Bild im Deal --- */
+/* Die linke Spalte ist kuerzer als die Liste rechts. Ohne Bild bleibt im
+   Goldfeld eine grosse tote Flaeche stehen. */
+.deal__bild{margin:40px 0 0;overflow:hidden}
+.deal__bild img{width:100%;height:auto;display:block}
+
+/* ------------------------------------------------------ Qualitaet + Bild - */
+.qual{
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+  gap:64px;align-items:start;
+}
+.qual__bild{margin:0;overflow:hidden;border-top:2px solid var(--koralle)}
+.qual__bild img{width:100%;height:auto;display:block}
+
+/* Dezenter Zoom, nur transform, nur auf Zeigergeraeten (DESIGN.md) */
+.deal__bild img,.qual__bild img{transition:transform 380ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){
+  .deal__bild:hover img,.qual__bild:hover img{transform:scale(1.03)}
+}
+
+@media(max-width:1024px){
+  .qual{grid-template-columns:1fr;gap:48px}
+}
+
 /* -------------------------------------------------------------- Responsiv */
 @media(max-width:1024px){
   .hero__inner{grid-template-columns:1fr;gap:48px;padding:64px 24px}
@@ -508,7 +543,10 @@ p{margin:0;max-width:68ch}
 /* --------------------------------------------------- Reduzierte Bewegung */
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .zeig{transform:none;transition:opacity 200ms ease}
+  /* Auch die Staffelung faellt weg, sonst warten Bloecke bis zu 450ms */
+  .zeig{transform:none;transition:opacity 200ms ease;--verz:0ms}
+  .deal__bild img,.qual__bild img{transition:none}
+  .deal__bild:hover img,.qual__bild:hover img{transform:none}
   .btn,.tel-gross{transition:none}
   .btn:active{transform:none}
 }

@@ -157,20 +157,20 @@
       <p>Sie bestellen Ware, die Sie ohnehin brauchen. Die Website kommt obendrauf.</p>
     </div>
 
-    <div class="schritte zeig">
-      <article class="schritt">
+    <div class="schritte zeig-reihe">
+      <article class="schritt zeig">
         <span class="schritt__nr">1</span>
         <h3>Muster kommen zu Ihnen</h3>
         <p>Wir schicken Ihnen ein Muster in die Küche. Sie kochen damit, Ihr Team probiert,
            Sie entscheiden. Erst danach reden wir über Mengen.</p>
       </article>
-      <article class="schritt">
+      <article class="schritt zeig">
         <span class="schritt__nr">2</span>
         <h3>Sie steigen ein</h3>
         <p>Ab 50 kg Jahresmenge sind Sie dabei. Lieferung tiefgekühlt,
            in Gastro-Gebinden, planbar über das ganze Jahr.</p>
       </article>
-      <article class="schritt">
+      <article class="schritt zeig">
         <span class="schritt__nr">3</span>
         <h3>Ihre Website entsteht</h3>
         <p>Sie geben uns Fotos, Speisekarte und Öffnungszeiten – wir bauen daraus
@@ -185,7 +185,7 @@
   <div class="wrap">
     <div class="sek__kopf">
       <span class="label">Das Sortiment</span>
-      <h2>Black Tiger in Gastro-Gebinden – Standard und Bio</h2>
+      <h2>Black Tiger in Gastro&#8209;Gebinden – Standard und Bio</h2>
       <p>Penaeus monodon aus Naturteichen in den Mangroven Vietnams. Nur 10–12 Tiere pro
          Kubikmeter, keine Zufütterung, gefischt in zwei Mondnächten pro Monat und sofort
          auf Eis gelegt.</p>
@@ -223,14 +223,21 @@
 <!-- ============================================================ QUALITÄT -->
 <section class="sek sek--dunkel">
   <div class="wrap">
-    <div class="sek__kopf">
-      <span class="label label--hell">Warum diese Crevetten</span>
-      <h2>Was drin ist – und vor allem, was nicht</h2>
-      <p>Wir sind Produzent und Importeur in einem. Das heisst: eigene Qualitätskontrolle
-         entlang der ganzen Linie, vom Teich bis in Ihre Küche. Und jeder Artikel im
-         Sortiment ist True Count – die Stückzahl gilt auf das Nettogewicht.</p>
+    <div class="qual">
+      <div>
+        <div class="sek__kopf">
+          <span class="label label--hell">Warum diese Crevetten</span>
+          <h2>Was drin ist – und vor allem, was nicht</h2>
+          <p>Wir sind Produzent und Importeur in einem. Das heisst: eigene Qualitätskontrolle
+             entlang der ganzen Linie, vom Teich bis in Ihre Küche. Und jeder Artikel im
+             Sortiment ist True Count – die Stückzahl gilt auf das Nettogewicht.</p>
+        </div>
+        <ul class="merkmale" id="merkmale"></ul>
+      </div>
+      <figure class="qual__bild zeig">
+        <img src="assets/img/bt-bio.jpg" alt="Einzelne rohe Black Tiger Crevette mit sichtbarer Bänderung auf dunklem Schiefer" width="1600" height="1073" loading="lazy">
+      </figure>
     </div>
-    <ul class="merkmale" id="merkmale"></ul>
   </div>
 </section>
 
@@ -242,6 +249,9 @@
         <span class="label">Der Deal</span>
         <h2>Ihre neue Website. Auf unsere Kosten.</h2>
         <p id="deal-text">Ab 50 kg Jahresmenge bauen wir Ihnen Ihre neue Website – kostenlos.</p>
+        <figure class="deal__bild">
+          <img src="assets/img/bt-eis.jpg" alt="Einzeln gefrostete Black Tiger Crevetten mit feinem Reif auf der Schale" width="1600" height="1073" loading="lazy">
+        </figure>
       </div>
       <ul class="deal__liste">
         <li>Design, Aufbau und Texte</li>
@@ -253,17 +263,17 @@
       </ul>
     </div>
 
-    <div class="konditionen zeig">
-      <div>
+    <div class="konditionen zeig-reihe">
+      <div class="zeig">
         <h3>Die Website gehört Ihnen</h3>
         <p data-kondition="eigentum">Domain und Website gehören Ihnen. Ausnahmslos.</p>
       </div>
-      <div>
+      <div class="zeig">
         <h3>Sie bleiben, wo Sie sind</h3>
         <p data-kondition="bestehend">Die meisten Betriebe bleiben bei ihrem Anbieter. Dann
            übernehmen wir einfach die bestehende Domain und den Webspace.</p>
       </div>
-      <div>
+      <div class="zeig">
         <h3>Hosting nur, wenn Sie wollen</h3>
         <p data-kondition="hosting">Hosting im ersten Jahr inklusive. Danach CHF 29 im Monat –
            aber nur, wenn Sie bei uns hosten möchten.</p>
