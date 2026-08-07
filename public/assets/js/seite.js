@@ -186,7 +186,7 @@
   if (gueltig) {
     gueltig.textContent = D.aktion.titel +
       " · gültig bis " + D.aktion.gueltig_bis +
-      " · ab " + D.aktion.mindestmenge_kg + " kg Jahresabnahme";
+      " · ab " + D.aktion.mindestmenge_kg + " kg Jahresmenge";
   }
 
   /* ----------------------------------------------------- Konditionen ---- */

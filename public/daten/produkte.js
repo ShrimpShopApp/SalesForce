@@ -29,8 +29,8 @@ window.SPOTI_DATEN = {
   "aktion": {
     "titel": "Gastro-Aktion 2026",
     "gueltig_bis": "30.09.2026",
-    "mindestmenge_kg": 20,
-    "deal_text": "Ab 20 kg Jahresabnahme bauen wir Ihnen Ihre neue Website – kostenlos."
+    "mindestmenge_kg": 50,
+    "deal_text": "Ab 50 kg Jahresmenge bauen wir Ihnen Ihre neue Website – kostenlos."
   },
 
   "konditionen": {
