@@ -124,11 +124,39 @@
 }
 
 /* ------------------------------------------------------------- Responsiv */
-@media(max-width:768px){
+
+/* Hochformat: Ein 16:9-Film in einer bildschirmhohen Buehne wuerde per
+   `cover` links und rechts fast dreiviertel wegschneiden. Deshalb hier eine
+   flache Buehne, `contain` statt `cover` (der Film hat selbst schwarzen
+   Grund, die Raender fallen also nicht auf) und der Text steht UNTER dem
+   Bild statt darauf. Breakpoint identisch zu film.js. */
+@media(max-width:860px){
+  /* Buehne liegt jetzt OBEN: Der Text soll dahinter verschwinden, nicht
+     darueber laufen. Im Querformat ist es umgekehrt. */
+  .film__buehne{height:46dvh;z-index:5}
+
+  .film__video,
+  .film__standbild{object-fit:contain}
+
+  /* Kein Ueberlagern mehr: Kapitel laufen unter der klebenden Buehne durch */
+  .film__kapitel-liste{margin-top:0;z-index:0}
+
+  .film__kapitel{
+    min-height:56dvh;
+    padding:32px 0;
+  }
+
+  /* Der Text liegt jetzt auf schwarzem Grund, der Schleier darf zurueck */
+  .film__schleier{
+    background:linear-gradient(to bottom,
+      rgba(2,2,2,.30) 0,rgba(2,2,2,0) 40%,rgba(2,2,2,.55) 100%);
+  }
+
   .film__kapitel h2,
-  .film__kapitel h1{font-size:clamp(2rem,9vw,2.75rem)}
+  .film__kapitel h1{font-size:clamp(1.75rem,7vw,2.375rem);max-width:none}
   .film__kapitel-text{max-width:none}
-  .film__belege{gap:16px}
+  .film__kapitel p{max-width:none}
+  .film__belege{gap:8px 16px}
 }
 
 /* --------------------------------------------------- Reduzierte Bewegung */
