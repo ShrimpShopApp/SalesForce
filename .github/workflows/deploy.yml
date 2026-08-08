@@ -1,6 +1,6 @@
 name: Kopie auf cyon per FTP (nur manuell)
 
-# Laedt die Website bei jeder Aenderung auf main per FTP zu cyon hoch.
+# Laedt die Website per FTP zu cyon hoch. Nur auf Zuruf, siehe unten.
 # Aufgebaut wie der bewaehrte Deploy von taragona.org: FTP-Deploy-Action ohne
 # protocol-Angabe (also einfaches FTP) und ein zweiter Versuch, falls der
 # erste in einen Timeout laeuft.

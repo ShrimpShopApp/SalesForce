@@ -45,56 +45,56 @@ public/                    ← alles hier drin geht auf den Webserver
 ├── index.html             Startseite
 ├── impressum.html         Impressum und Datenschutz
 ├── .htaccess              HTTPS, Kompression, Caching
+├── CNAME                  Domain fuer GitHub Pages (www.spoti.ch)
 ├── robots.txt · sitemap.xml
 ├── daten/produkte.js      einzige Inhalts- und Preisquelle
-├── assets/css · js · img
+├── assets/css · js · img · video
 └── demo/                  Muster-Restaurant (auf noindex)
 
 .github/workflows/
-├── static.yml             Vorschau auf GitHub Pages
-└── deploy.yml             Livegang per FTP auf mycyon.ch
+├── static.yml             Livegang auf GitHub Pages — das ist spoti.ch
+└── deploy.yml             Kopie auf cyon per FTP, nur von Hand
 ```
 
 ---
 
 ## Deployment
 
-Jeder Push auf `main` lädt die Seite automatisch per FTP auf mycyon.ch — das ist
-spoti.ch. Kein manueller Upload, kein FileZilla. Ändern, committen, pushen, fertig.
+Jeder Push auf `main` veröffentlicht die Seite über **GitHub Pages** — das ist
+spoti.ch. Zuständig ist `.github/workflows/static.yml`, es läuft von selbst.
+Ändern, committen, pushen, fertig. Kein FTP, kein FileZilla, keine Secrets.
 
-Dafür braucht der Workflow drei Secrets unter
-**Settings → Secrets and variables → Actions**:
+Veröffentlicht wird ausschliesslich der Ordner `public/`, niemals die
+Repo-Wurzel. Die Domain hängt an zwei Stellen: an `public/CNAME` und an
+**Settings → Pages → Custom domain**. Beide sagen `www.spoti.ch`.
 
-| Name | Wert |
-|---|---|
-| `FTP_SERVER` | FTP-Host, z. B. `ftp.spoti.ch` |
-| `FTP_USERNAME` | FTP-Benutzername |
-| `FTP_PASSWORD` | FTP-Passwort |
+Vor dem Hochladen prüft der Workflow, ob die Pflichtdateien da sind und die
+Unsplash-Fotos geladen werden konnten — sonst bricht er ab und lädt nichts hoch.
+Steht `preise_freigegeben` auf `false`, läuft er durch und schreibt eine Warnung
+ins Log.
 
-Fehlt eines davon, bricht der Workflow im ersten Schritt ab und schreibt ins
-Log, welches. Er lädt in dem Fall nichts hoch.
+### Die FTP-Kopie auf cyon
 
-Optional unter *Variables*, falls abweichend:
+`.github/workflows/deploy.yml` legt dieselben Dateien zusätzlich in einem
+cyon-Ordner ab. Das ist **nicht** das Deployment von spoti.ch und läuft
+ausschliesslich von Hand: **Actions → „Kopie auf cyon per FTP“ → Run workflow**.
 
-| Name | Standard | Wann ändern |
+Unter **Settings → Secrets and variables → Actions**:
+
+| Art | Name | Standard |
 |---|---|---|
-| `FTP_PROTOCOL` | `ftps` | auf `ftp`, wenn der Server kein FTPS kann |
-| `FTP_PORT` | `21` | bei abweichendem Port |
-| `FTP_SERVER_DIR` | `/` | z. B. `/httpdocs/` oder `/public_html/` |
+| Secret | `FTP_PASSWORD` | — muss gesetzt sein |
+| Variable | `FTP_HOST` | `s039.cyon.net` |
+| Variable | `FTP_USER` | `admin@spoti.ch` |
+| Variable | `FTP_ZIEL` | `/salesforce/` |
 
-`FTP_SERVER_DIR` ist der häufigste Stolperstein. Läuft der Workflow grün durch,
-aber auf spoti.ch ändert sich nichts, liegen die Dateien eine Ordnerebene daneben.
-Im FTP-Programm nachsehen, wo die Website liegt, und den Pfad eintragen.
+Nur das Passwort ist Pflicht, der Rest hat Vorgabewerte. `FTP_ZIEL` ist der
+häufigste Stolperstein: Das FTP-Konto startet in einem anderen Verzeichnis, der
+Webroot liegt eine Ebene tiefer in `salesforce/`. Läuft der Workflow grün durch,
+aber es ändert sich nichts, liegen die Dateien eine Ordnerebene daneben.
 
 Es wird nur hochgeladen, was sich geändert hat — der Workflow merkt sich den
 Stand auf dem Server.
-
-### Vorschau vor dem Livegang
-
-Wer eine Änderung erst anschauen will, ohne spoti.ch anzufassen:
-**Actions → „Vorschau auf GitHub Pages“ → Run workflow**. Läuft ausschliesslich
-von Hand, damit keine zweite öffentliche Kopie der Seite entsteht, die spoti.ch
-bei Google Konkurrenz macht.
 
 ---
 

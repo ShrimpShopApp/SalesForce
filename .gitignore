@@ -29,6 +29,10 @@ sales/
 # Interne Notizen
 INTERN.md
 
+# Persoenliche Claude-Code-Einstellungen (Freigaben pro Rechner).
+# .claude/skills/ und .mcp.json gehoeren dagegen ins Repo.
+.claude/settings.local.json
+
 # Temporaer
 node_modules/
 *.log
